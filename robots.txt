@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://lichtara-io.github.io/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1
+
+# Disallow sensitive directories
+Disallow: /06-administrativo/
+Disallow: /99_anexos/
+Disallow: /.git/
+Disallow: /node_modules/
+Disallow: /vendor/
+
+# Allow main documentation
+Allow: /03-docs/
+Allow: /LICENSE.md
+Allow: /AUTHORS.md
+Allow: /CONTRIBUTING.md

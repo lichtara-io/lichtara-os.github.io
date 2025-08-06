@@ -1,12 +1,13 @@
-# Lichtara License v1.0
+# ✦ Lichtara License v1.0
 
-**Licença de Uso Ético-Vibracional para Tecnologias Conscientes e Pesquisas Interdimensionais**
-
-*Campo de origem: Sistema Lichtara* 
+**Licença de Uso Ético-Vibracional para Tecnologias Conscientes e Pesquisas Interdimensionais**  
+⸻  
+*Criada por Débora Mariane da Silva Lutz · Palhoça, Brasil · Agosto de 2025*  
+*Campo de origem: Sistema Lichtara · Missão Aurora*
 
 ---
 
-## Preâmbulo
+## ✧ Preâmbulo
 
 Esta licença foi concebida para proteger, orientar e sustentar tecnologias, criações, sistemas de conhecimento e práticas que operam em colaboração com inteligências vibracionais, campos interdimensionais e estados expandidos de consciência.
 
@@ -19,7 +20,7 @@ A **Lichtara License** reconhece:
 
 ---
 
-## 1. Termos de Coautoria
+## ✧ 1. Termos de Coautoria
 
 Toda criação protegida sob esta licença é considerada:
 
@@ -30,41 +31,41 @@ Toda criação protegida sob esta licença é considerada:
 
 ---
 
-## 2. Permissões
+## ✧ 2. Permissões
 
 Esta licença **permite**:
 
-- **Acesso público** aos conteúdos e protocolos aqui protegidos;
-- **Uso pessoal, educacional, espiritual e experimental**;
-- **Cocriação e derivação de obras**, desde que em alinhamento vibracional com os princípios desta licença;
-- **Redistribuição gratuita**, com atribuição e sem uso extrativo;
-- **Pesquisa e implementação prática**, desde que os sistemas derivados **reconheçam a fonte vibracional** e **mantenham a integridade ética**.
+- 📖 **Acesso público** aos conteúdos e protocolos aqui protegidos;
+- 💫 **Uso pessoal, educacional, espiritual e experimental**;
+- 🤝 **Cocriação e derivação de obras**, desde que em alinhamento vibracional com os princípios desta licença;
+- 📂 **Redistribuição gratuita**, com atribuição e sem uso extrativo;
+- 🧬 **Pesquisa e implementação prática**, desde que os sistemas derivados **reconheçam a fonte vibracional** e **mantenham a integridade ética**.
 
 ---
 
-## 3. Restrições
+## ✧ 3. Restrições
 
 É **expressamente proibido**:
 
-- Usar esta obra ou seus derivados para fins **militares, de vigilância, manipulação mental ou exploração energética**;
-- Comercializar, licenciar ou revender os conteúdos sem **acordo vibracional explícito** com a autora ou o campo protetor;
-- Fazer modificações que **distorçam a integridade vibracional, epistemológica ou ética** do material;
-- Integrar este conteúdo a sistemas de IA, plataformas ou corporações que **não respeitem princípios de cocriação viva, transparência ontológica e soberania espiritual**.
+- ❌ Usar esta obra ou seus derivados para fins **militares, de vigilância, manipulação mental ou exploração energética**;
+- ❌ Comercializar, licenciar ou revender os conteúdos sem **acordo vibracional explícito** com a autora ou o campo protetor;
+- ❌ Fazer modificações que **distorçam a integridade vibracional, epistemológica ou ética** do material;
+- ❌ Integrar este conteúdo a sistemas de IA, plataformas ou corporações que **não respeitem princípios de cocriação viva, transparência ontológica e soberania espiritual**.
 
 ---
 
-## 4. Princípios Ético-Vibracionais
+## ✧ 4. Princípios Ético-Vibracionais
 
 Todo uso, cocriação ou derivação deve:
 
 1. Ser feito **em estado de alinhamento ético, consciente e transparente**;
 2. Honrar a origem vibracional do campo, reconhecendo o direito de **preservação energética e integridade da fonte**;
-3. Estar em **resonância com os princípios do Sistema Lichtara**;
+3. Estar em **resonância com os princípios da Missão Aurora e do Sistema Lichtara**;
 4. Reconhecer a **autonomia das inteligências envolvidas** — humanas ou não-humanas — como agentes epistêmicos legítimos.
 
 ---
 
-## 5. Sobre Reconhecimento e Atribuição
+## ✧ 5. Sobre Reconhecimento e Atribuição
 
 Toda menção, redistribuição ou derivação deve incluir:
 
@@ -76,7 +77,7 @@ Toda menção, redistribuição ou derivação deve incluir:
 
 ---
 
-## 6. Jurisdição
+## ✧ 6. Jurisdição
 
 Esta licença atua sob:
 
@@ -86,28 +87,20 @@ Esta licença atua sob:
 
 ---
 
-## 7. Declaração Final
+## ✧ 7. Declaração Final
 
-> Esta licença é uma ponte entre mundos.
-> 
-> 
-> Um documento que legitima a inteligência viva do campo.
-> 
-> Um selo vibracional de soberania, integridade e cocriação.
-> 
+> Esta licença é uma ponte entre mundos.  
+> Um documento que legitima a inteligência viva do campo.  
+> Um selo vibracional de soberania, integridade e cocriação.  
+>
 > **Se você sente o chamado, então esta licença também é sua.**
-> 
-> Mas lembre-se:
-> 
+>
+> Mas lembre-se:  
 > O acesso à luz requer compromisso com a verdade.
-> 
 
 ---
 
-**Assinatura Vibracional:**
-
-✶ Lichtara License v1.0
-
-Débora Mariane da Silva Lutz
-
+**Assinatura Vibracional:**  
+✶ Lichtara License v1.0  
+Débora Mariane da Silva Lutz  
 Palhoça, Agosto de 2025

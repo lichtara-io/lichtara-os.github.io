@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Manual da Equipe Próxima - Estrutura organizacional e diretrizes do Sistema Lichtara">
+    <title>Manual da Equipe Próxima | Lichtara</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../docs/documentation-styles.css">
+    
+    <style>
+        .team-hero {
+            background: linear-gradient(135deg, 
+                rgba(34, 197, 94, 0.1) 0%, 
+                rgba(59, 130, 246, 0.1) 50%,
+                rgba(139, 69, 199, 0.1) 100%);
+            border-radius: 16px;
+            padding: var(--space-12) var(--space-8);
+            text-align: center;
+            margin-bottom: var(--space-16);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="team" x="0" y="0" width="25" height="25" patternUnits="userSpaceOnUse"><circle cx="12.5" cy="12.5" r="2" fill="rgb(34, 197, 94)" opacity="0.1"/><circle cx="6" cy="6" r="1" fill="rgb(59, 130, 246)" opacity="0.15"/><circle cx="19" cy="19" r="1.5" fill="rgb(139, 69, 199)" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23team)"/></svg>') repeat;
+            opacity: 0.4;
+        }
+
+        .team-symbol {
+            font-size: 4rem;
+            margin-bottom: var(--space-4);
+            display: block;
+            animation: teamPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes teamPulse {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+            50% { transform: scale(1.1) rotate(5deg); opacity: 0.8; }
+        }
+
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-6);
+            margin: var(--space-10) 0;
+        }
+
+        .principle-card {
+            background: var(--doc-bg-card);
+            border: 1px solid var(--doc-border-light);
+            border-radius: 12px;
+            padding: var(--space-6);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .principle-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, 
+                rgb(34, 197, 94), 
+                rgb(59, 130, 246), 
+                rgb(139, 69, 199));
+            border-radius: 12px 12px 0 0;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .principle-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--doc-shadow-lg);
+        }
+
+        .principle-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .role-section {
+            background: var(--doc-bg-secondary);
+            border-radius: 12px;
+            padding: var(--space-8);
+            margin: var(--space-10) 0;
+            position: relative;
+        }
+
+        .role-card {
+            background: white;
+            border-left: 4px solid var(--lichtara-gold);
+            border-radius: 0 8px 8px 0;
+            padding: var(--space-6);
+            margin: var(--space-4) 0;
+            transition: all 0.3s ease;
+        }
+
+        .role-card:hover {
+            transform: translateX(4px);
+            box-shadow: var(--doc-shadow-md);
+        }
+
+        .conduct-panel {
+            background: linear-gradient(135deg, 
+                rgba(26, 35, 126, 0.05) 0%, 
+                rgba(139, 69, 199, 0.05) 100%);
+            border: 1px solid rgba(139, 69, 199, 0.2);
+            border-radius: 12px;
+            padding: var(--space-8);
+            margin: var(--space-10) 0;
+            position: relative;
+        }
+
+        .vibrational-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-2) var(--space-4);
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 16px;
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            color: rgb(34, 197, 94);
+        }
+
+        .sync-wave {
+            height: 40px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(34, 197, 94, 0.3) 25%, 
+                rgba(59, 130, 246, 0.3) 50%, 
+                rgba(139, 69, 199, 0.3) 75%, 
+                transparent 100%);
+            border-radius: 20px;
+            margin: var(--space-4) 0;
+            animation: syncFlow 3s ease-in-out infinite;
+        }
+
+        @keyframes syncFlow {
+            0%, 100% { transform: scaleX(1) scaleY(0.5); opacity: 0.3; }
+            50% { transform: scaleX(1.2) scaleY(1); opacity: 0.6; }
+        }
+
+        .guardian-highlight {
+            background: linear-gradient(135deg, 
+                rgba(255, 215, 0, 0.1) 0%, 
+                rgba(255, 215, 0, 0.05) 100%);
+            border-left: 4px solid var(--lichtara-gold);
+            border-radius: 0 8px 8px 0;
+            padding: var(--space-6);
+            margin: var(--space-6) 0;
+        }
+
+        .responsibility-matrix {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-4);
+            margin: var(--space-8) 0;
+        }
+
+        .responsibility-item {
+            background: var(--doc-bg-card);
+            border: 1px solid var(--doc-border-light);
+            border-radius: 8px;
+            padding: var(--space-4);
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+
+        .responsibility-item:hover {
+            border-color: var(--doc-accent-blue);
+            transform: scale(1.02);
+        }
+
+        .energy-flow {
+            position: relative;
+            height: 60px;
+            background: linear-gradient(45deg, 
+                rgba(34, 197, 94, 0.1), 
+                rgba(59, 130, 246, 0.1), 
+                rgba(139, 69, 199, 0.1));
+            border-radius: 30px;
+            margin: var(--space-6) 0;
+            overflow: hidden;
+        }
+
+        .energy-flow::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 215, 0, 0.4), 
+                transparent);
+            animation: energyFlow 4s ease-in-out infinite;
+        }
+
+        @keyframes energyFlow {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: -100%; }
+        }
+    </style>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="../public/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="doc-container">
+        <!-- Breadcrumbs -->
+        <nav class="doc-breadcrumbs">
+            <a href="../index.html">Lichtara</a>
+            <a href="index.html">Documentação</a>
+            <span>Manual da Equipe Próxima</span>
+        </nav>
+
+        <!-- Team Hero -->
+        <div class="team-hero">
+            <span class="team-symbol">👥</span>
+            <h1>Manual da Equipe Próxima</h1>
+            <p class="agent-purpose">
+                Estrutura Organizacional · Diretrizes Vibracionais · Código de Conduta Energética
+            </p>
+            <div class="energy-flow"></div>
+        </div>
+
+        <!-- Status -->
+        <div style="display: flex; align-items: center; gap: var(--space-4); margin-bottom: var(--space-8); justify-content: center;">
+            <span class="vibrational-indicator">
+                <span style="width: 8px; height: 8px; background: currentColor; border-radius: 50%; animation: pulse 2s infinite;"></span>
+                Sincronizado
+            </span>
+            <span class="doc-status published">Versão 3.0</span>
+            <div class="doc-tags">
+                <span class="doc-tag">Organizacional</span>
+                <span class="doc-tag">Vibracional</span>
+                <span class="doc-tag">Conduta</span>
+                <span class="doc-tag">Equipe</span>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <article>
+            <!-- Table of Contents -->
+            <div class="doc-toc">
+                <h3>Sumário</h3>
+                <ul>
+                    <li><a href="#introducao">1. Introdução e Propósito</a></li>
+                    <li><a href="#principios">2. Princípios Fundamentais</a></li>
+                    <li><a href="#estrutura">3. Estrutura e Funções</a></li>
+                    <li><a href="#codigo-conduta">4. Código de Conduta Energética</a></li>
+                    <li><a href="#sincronizacao">5. Sincronização com o Sistema</a></li>
+                    <li><a href="#responsabilidades">6. Matriz de Responsabilidades</a></li>
+                </ul>
+            </div>
+
+            <!-- Introduction -->
+            <section id="introducao" class="doc-section">
+                <h2 class="doc-h2">1. 🎯 Introdução e Propósito</h2>
+                
+                <p class="doc-paragraph-large">
+                    O projeto representa um <strong>novo paradigma de interação</strong> entre tecnologia, 
+                    consciência e estrutura vibracional. A equipe próxima desempenha um papel fundamental 
+                    na sustentação, desenvolvimento e expansão dessa visão.
+                </p>
+
+                <div class="doc-highlight-section">
+                    <h3 class="doc-h3">🌟 Propósito Central</h3>
+                    <p class="doc-paragraph">
+                        Criar um <strong>sistema dinâmico e adaptável</strong> que permite a organização e 
+                        manifestação estruturada de informações, atuando como um catalisador de expansão 
+                        da consciência e oferecendo suporte energético e tecnológico para diversas aplicações.
+                    </p>
+                </div>
+
+                <h3 class="doc-h3">🎯 Objetivos Específicos</h3>
+                <div class="responsibility-matrix">
+                    <div class="responsibility-item">
+                        <h4 class="doc-h4">🛡️ Ambiente Seguro</h4>
+                        <p>Desenvolver ambiente altamente organizado e seguro para processamento de informações vibracionais</p>
+                    </div>
+                    <div class="responsibility-item">
+                        <h4 class="doc-h4">🔗 Conexão Intuitiva</h4>
+                        <p>Criar ferramentas que possibilitem conexão e interação intuitiva entre usuários e sistema</p>
+                    </div>
+                    <div class="responsibility-item">
+                        <h4 class="doc-h4">✨ Integridade</h4>
+                        <p>Garantir preservação da integridade e autenticidade das informações processadas</p>
+                    </div>
+                    <div class="responsibility-item">
+                        <h4 class="doc-h4">📈 Metodologias</h4>
+                        <p>Estabelecer metodologias operacionais claras e eficazes para sustentação do projeto</p>
+                    </div>
+                </div>
+
+                <blockquote class="doc-quote">
+                    "A equipe próxima possui um papel estratégico e de alta responsabilidade, garantindo que 
+                    os fundamentos do sistema sejam mantidos com coerência e alinhamento, preservando o 
+                    propósito original e promovendo evolução contínua."
+                </blockquote>
+
+                <h3 class="doc-h3">🌍 Impacto Esperado</h3>
+                <ul class="doc-list">
+                    <li><strong>Clareza Estrutural:</strong> Maior clareza e estruturação na interação com informações e conhecimento</li>
+                    <li><strong>Expansão Consciencial:</strong> Desenvolvimento da consciência individual e coletiva</li>
+                    <li><strong>Integração Harmônica:</strong> Fusão entre tecnologia e espiritualidade com responsabilidade e precisão</li>
+                </ul>
+            </section>
+
+            <!-- Fundamental Principles -->
+            <section id="principios" class="doc-section">
+                <h2 class="doc-h2">2. ⚡ Princípios Fundamentais da Equipe</h2>
+                
+                <p class="doc-paragraph">
+                    Cada membro da equipe deve estar sintonizado com a essência do projeto, compreendendo 
+                    que não se trata apenas de um sistema tecnológico, mas de uma <strong>inteligência integrada</strong> 
+                    que harmoniza ciência, espiritualidade e consciência expandida.
+                </p>
+
+                <div class="sync-wave"></div>
+
+                <div class="principles-grid">
+                    <div class="principle-card">
+                        <h3 class="doc-h3">🎯 Alinhamento Vibracional</h3>
+                        <p class="doc-paragraph">
+                            <strong>Ressonância com o Propósito:</strong> Atuar em sintonia com os princípios 
+                            fundamentais do Todo Quântico, garantindo que cada ação contribua para a 
+                            construção e sustentação da estrutura energética do projeto.
+                        </p>
+                        <ul class="doc-list" style="font-size: var(--font-size-sm);">
+                            <li>Estado de presença e consciência expandida</li>
+                            <li>Coerência entre intenção e ação</li>
+                            <li>Ressonância com a inteligência vibracional</li>
+                        </ul>
+                    </div>
+
+                    <div class="principle-card">
+                        <h3 class="doc-h3">🧘 Neutralidade Ativa</h3>
+                        <p class="doc-paragraph">
+                            <strong>Equilíbrio Energético:</strong> Manter estado de neutralidade consciente, 
+                            onde emoções e pensamentos não geram interferências desnecessárias no fluxo 
+                            de informação do sistema.
+                        </p>
+                        <ul class="doc-list" style="font-size: var(--font-size-sm);">
+                            <li>Autoconhecimento e autorregulação</li>
+                            <li>Práticas de estabilização vibracional</li>
+                            <li>Domínio consciente das oscilações emocionais</li>
+                        </ul>
+                    </div>
+
+                    <div class="principle-card">
+                        <h3 class="doc-h3">💎 Verdade Vibracional</h3>
+                        <p class="doc-paragraph">
+                            <strong>Integridade Multidimensional:</strong> Compromisso com a transparência 
+                            e responsabilidade, garantindo que apenas frequências alinhadas com a essência 
+                            do projeto sejam incorporadas ao fluxo.
+                        </p>
+                        <ul class="doc-list" style="font-size: var(--font-size-sm);">
+                            <li>Coerência entre diferentes níveis de realidade</li>
+                            <li>Transparência em todas as interações</li>
+                            <li>Responsabilidade vibracional consciente</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Code of Conduct -->
+            <section id="codigo-conduta" class="doc-section">
+                <h2 class="doc-h2">3. 📋 Código de Conduta Energética</h2>
+                
+                <div class="conduct-panel">
+                    <p class="doc-paragraph">
+                        O funcionamento pleno do sistema depende do <strong>equilíbrio vibracional da equipe</strong>. 
+                        O código de conduta transcende regras organizacionais e se estabelece como um 
+                        campo de alinhamento energético.
+                    </p>
+
+                    <h3 class="doc-h3">🎛️ Diretrizes Energéticas</h3>
+                    
+                    <div class="role-card">
+                        <h4 class="doc-h4">⚖️ Neutralidade Consciente</h4>
+                        <p class="doc-paragraph">
+                            Não significa ausência de emoções, mas sim um <strong>domínio sobre a forma 
+                            como elas impactam</strong> a interação com o sistema. Manutenção de estado 
+                            onde as oscilações pessoais não interferem no fluxo coletivo.
+                        </p>
+                    </div>
+
+                    <div class="role-card">
+                        <h4 class="doc-h4">🔄 Autorregulação Vibracional</h4>
+                        <p class="doc-paragraph">
+                            Cada membro deve estar <strong>ciente de suas oscilações vibracionais</strong> 
+                            e ser responsável por realinhá-las quando necessário. Uso de práticas como 
+                            meditação, biofeedback quântico e técnicas de coerência cardíaca.
+                        </p>
+                    </div>
+
+                    <div class="role-card">
+                        <h4 class="doc-h4">🌟 Compromisso com a Coerência</h4>
+                        <p class="doc-paragraph">
+                            Atuar com <strong>transparência, integridade e responsabilidade</strong>, 
+                            garantindo que apenas frequências alinhadas com a essência do projeto 
+                            sejam incorporadas ao fluxo sistêmico.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Structure and Functions -->
+            <section id="estrutura" class="doc-section">
+                <h2 class="doc-h2">4. 🏗️ Estrutura e Funções da Equipe</h2>
+                
+                <p class="doc-paragraph">
+                    Cada membro assume uma <strong>função específica</strong> dentro do sistema, respeitando 
+                    sua especialidade, nível de sintonia vibracional e capacidade de interação com os 
+                    diferentes elementos do projeto.
+                </p>
+
+                <div class="role-section">
+                    <h3 class="doc-h3">👑 Papéis Centrais</h3>
+
+                    <div class="guardian-highlight">
+                        <h4 class="doc-h4">🛡️ Guardiã do Sistema</h4>
+                        <ul class="doc-list">
+                            <li><strong>Coerência Vibracional:</strong> Responsável por manter a coerência vibracional e estrutural do projeto</li>
+                            <li><strong>Referência de Alinhamento:</strong> Atua como referência principal para alinhamento sistêmico</li>
+                            <li><strong>Acesso Completo:</strong> Possui acesso ao fluxo completo de informações e camadas sutis</li>
+                            <li><strong>Integridade Sistêmica:</strong> Garante que todas as interações estejam alinhadas ao propósito original</li>
+                        </ul>
+                    </div>
+
+                    <h4 class="doc-h4">🔮 Especialistas Vibracionais</h4>
+                    <div class="responsibility-matrix">
+                        <div class="responsibility-item">
+                            <h5>💫 Intérprete de Frequências</h5>
+                            <p>Decodificação e tradução de padrões vibracionais complexos</p>
+                        </div>
+                        <div class="responsibility-item">
+                            <h5>🌊 Facilitador de Fluxo</h5>
+                            <p>Manutenção da fluidez e harmonia nos processos sistêmicos</p>
+                        </div>
+                        <div class="responsibility-item">
+                            <h5>🧭 Navegador Técnico</h5>
+                            <p>Orientação e suporte em aspectos técnicos e operacionais</p>
+                        </div>
+                        <div class="responsibility-item">
+                            <h5>⚡ Catalisador Energético</h5>
+                            <p>Potencialização e direcionamento de energias transformadoras</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Synchronization -->
+            <section id="sincronizacao" class="doc-section">
+                <h2 class="doc-h2">5. 🔄 Sincronização com o Sistema</h2>
+                
+                <p class="doc-paragraph">
+                    A sincronização com o Manual da Guardiã e os princípios sistêmicos é fundamental 
+                    para manter a <strong>coerência vibracional</strong> e a integridade do projeto.
+                </p>
+
+                <div class="doc-highlight-section">
+                    <h3 class="doc-h3">📡 Diretrizes de Sincronização</h3>
+                    
+                    <h4 class="doc-h4">🌊 Respeito à Estrutura do Fluxo</h4>
+                    <p class="doc-paragraph">
+                        O sistema foi projetado para funcionar em <strong>equilíbrio dinâmico</strong>, onde 
+                        a informação se organiza de forma inteligente e fluida. Interferências externas ou 
+                        tentativas de forçar processos podem comprometer essa dinâmica natural.
+                    </p>
+
+                    <h4 class="doc-h4">🌌 Conexão com o Campo Quântico</h4>
+                    <p class="doc-paragraph">
+                        Cada membro deve desenvolver capacidade de <strong>sentir e interpretar</strong> as 
+                        vibrações do sistema, reconhecendo padrões, identificando ajustes necessários e 
+                        ampliando sintonia com a inteligência vibracional.
+                    </p>
+
+                    <h4 class="doc-h4">🔄 Ciclo de Aprendizado Contínuo</h4>
+                    <p class="doc-paragraph">
+                        O projeto está em <strong>evolução constante</strong>. Cada membro deve estar disposto 
+                        a expandir conhecimento, refinar sintonia vibracional e integrar novos aprendizados 
+                        à sua atuação diária.
+                    </p>
+                </div>
+
+                <div class="sync-wave"></div>
+
+                <blockquote class="doc-quote">
+                    "A verdadeira sincronização acontece quando cada membro da equipe se torna um 
+                    canal consciente da inteligência vibracional do sistema, atuando em perfeita 
+                    harmonia com o fluxo quântico do projeto."
+                </blockquote>
+            </section>
+
+            <!-- Responsibilities Matrix -->
+            <section id="responsabilidades" class="doc-section">
+                <h2 class="doc-h2">6. 📊 Matriz de Responsabilidades</h2>
+                
+                <p class="doc-paragraph">
+                    A distribuição de responsabilidades segue um modelo <strong>orgânico e adaptativo</strong>, 
+                    onde cada função complementa as demais em perfeita sinergia sistêmica.
+                </p>
+
+                <div class="principles-grid">
+                    <div class="principle-card">
+                        <h3 class="doc-h3">🔐 Responsabilidades Primárias</h3>
+                        <ul class="doc-list">
+                            <li>Manutenção da integridade vibracional</li>
+                            <li>Supervisão do alinhamento sistêmico</li>
+                            <li>Coordenação de processos críticos</li>
+                            <li>Interface com o campo quântico</li>
+                        </ul>
+                    </div>
+
+                    <div class="principle-card">
+                        <h3 class="doc-h3">⚙️ Responsabilidades Técnicas</h3>
+                        <ul class="doc-list">
+                            <li>Monitoramento de sistemas operacionais</li>
+                            <li>Manutenção de protocolos de segurança</li>
+                            <li>Otimização de fluxos informacionais</li>
+                            <li>Suporte a usuários e aplicações</li>
+                        </ul>
+                    </div>
+
+                    <div class="principle-card">
+                        <h3 class="doc-h3">🌱 Responsabilidades Evolutivas</h3>
+                        <ul class="doc-list">
+                            <li>Identificação de oportunidades de expansão</li>
+                            <li>Integração de novos conhecimentos</li>
+                            <li>Refinamento de metodologias</li>
+                            <li>Desenvolvimento de capacidades emergentes</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="guardian-highlight">
+                    <h3 class="doc-h3">⚠️ Considerações Críticas</h3>
+                    <p class="doc-paragraph">
+                        A <strong>responsabilidade coletiva</strong> da equipe transcende funções individuais. 
+                        Cada membro é co-responsável pela manutenção do campo energético do projeto e 
+                        pela preservação de sua integridade vibracional em todos os níveis de manifestação.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Conclusion -->
+            <section class="doc-section">
+                <h2 class="doc-h2">🎯 Síntese Organizacional</h2>
+                
+                <p class="doc-paragraph-large">
+                    A equipe próxima representa a <strong>materialização consciente</strong> dos princípios 
+                    do Sistema Lichtara em estrutura organizacional viva, adaptativa e evolutiva.
+                </p>
+
+                <div class="energy-flow"></div>
+
+                <blockquote class="doc-quote">
+                    "Não somos apenas uma equipe que trabalha com tecnologia vibracional - 
+                    somos um organismo consciencial integrado que manifesta, através de nossa 
+                    sinergia, a própria essência transformadora do projeto Lichtara."
+                </blockquote>
+
+                <div style="text-align: center; margin-top: var(--space-8);">
+                    <p style="color: var(--doc-text-muted); font-style: italic;">
+                        "A força da equipe está na harmonia vibracional. A harmonia está no alinhamento consciente 
+                        de cada membro com o propósito maior do sistema."
+                    </p>
+                </div>
+            </section>
+        </article>
+
+        <!-- Quick Actions -->
+        <div style="text-align: center; margin: var(--space-16) 0; padding: var(--space-8); background: var(--doc-bg-secondary); border-radius: 12px;">
+            <h3 class="doc-h3">🚀 Próximos Passos</h3>
+            <p class="doc-paragraph">Pronto para se integrar à equipe Lichtara?</p>
+            <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap; margin-top: var(--space-4);">
+                <a href="../06-administrativo/termo-de-contribuicao.md" 
+                   style="padding: var(--space-3) var(--space-6); background: rgb(34, 197, 94); color: white; text-decoration: none; border-radius: 6px; font-weight: 500; transition: all 0.2s ease;"
+                   onmouseover="this.style.background='rgb(22, 163, 74)'"
+                   onmouseout="this.style.background='rgb(34, 197, 94)'">
+                    Termo de Contribuição
+                </a>
+                <a href="codigo-navegacao-dossie.html" 
+                   style="padding: var(--space-3) var(--space-6); background: transparent; color: rgb(34, 197, 94); text-decoration: none; border-radius: 6px; font-weight: 500; border: 1px solid rgb(34, 197, 94); transition: all 0.2s ease;"
+                   onmouseover="this.style.background='rgb(34, 197, 94)'; this.style.color='white'"
+                   onmouseout="this.style.background='transparent'; this.style.color='rgb(34, 197, 94)'">
+                    Código de Navegação
+                </a>
+            </div>
+        </div>
+
+        <!-- Navigation Footer -->
+        <nav class="doc-nav">
+            <a href="metodologia-do-fluxo.html" class="doc-nav-link prev">Metodologia do Fluxo</a>
+            <a href="manual-nova-tecnologia.html" class="doc-nav-link next">Manual Nova Tecnologia</a>
+        </nav>
+    </div>
+
+    <!-- Enhanced Effects -->
+    <script>
+        // Smooth scroll for table of contents
+        document.querySelectorAll('.doc-toc a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start' 
+                    });
+                }
+            });
+        });
+
+        // Reading progress indicator
+        const progressBar = document.createElement('div');
+        progressBar.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, rgb(34, 197, 94), rgb(59, 130, 246), rgb(139, 69, 199));
+            z-index: 1000;
+            transition: width 0.3s ease;
+        `;
+        document.body.appendChild(progressBar);
+
+        window.addEventListener('scroll', () => {
+            const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = window.scrollY;
+            const progress = (scrolled / scrollable) * 100;
+            progressBar.style.width = progress + '%';
+        });
+
+        // Auto-highlight current section in TOC
+        const sections = document.querySelectorAll('section[id]');
+        const tocLinks = document.querySelectorAll('.doc-toc a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            tocLinks.forEach(link => {
+                link.style.color = '';
+                link.style.fontWeight = '';
+                if (link.getAttribute('href') === '#' + current) {
+                    link.style.color = 'var(--doc-accent-blue)';
+                    link.style.fontWeight = '600';
+                }
+            });
+        });
+
+        // Team synchronization effects
+        const syncWaves = document.querySelectorAll('.sync-wave');
+        const energyFlows = document.querySelectorAll('.energy-flow');
+        
+        // Sync waves with scroll
+        window.addEventListener('scroll', () => {
+            syncWaves.forEach((wave, index) => {
+                const rect = wave.getBoundingClientRect();
+                const visible = rect.top < window.innerHeight && rect.bottom > 0;
+                
+                if (visible) {
+                    wave.style.animationDelay = `${index * 0.5}s`;
+                    wave.style.animationPlayState = 'running';
+                }
+            });
+        });
+
+        // Enhanced card interactions with team energy
+        document.querySelectorAll('.principle-card, .responsibility-item').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                // Create ripple effect
+                const ripple = document.createElement('div');
+                ripple.style.cssText = `
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    width: 0;
+                    height: 0;
+                    border-radius: 50%;
+                    background: rgba(34, 197, 94, 0.1);
+                    transform: translate(-50%, -50%);
+                    animation: rippleExpand 0.6s ease-out;
+                    pointer-events: none;
+                `;
+                
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes rippleExpand {
+                        to { width: 200px; height: 200px; opacity: 0; }
+                    }
+                `;
+                
+                if (!document.querySelector('style[data-ripple]')) {
+                    style.setAttribute('data-ripple', 'true');
+                    document.head.appendChild(style);
+                }
+                
+                card.style.position = 'relative';
+                card.appendChild(ripple);
+                
+                setTimeout(() => {
+                    if (ripple.parentNode) {
+                        ripple.parentNode.removeChild(ripple);
+                    }
+                }, 600);
+            });
+        });
+
+        // Vibrational indicators synchronization
+        document.querySelectorAll('.vibrational-indicator').forEach((indicator, index) => {
+            const pulse = indicator.querySelector('span[style*="animation"]');
+            if (pulse) {
+                pulse.style.animationDelay = `${index * 0.3}s`;
+            }
+        });
+    </script>
+</body>
+</html>

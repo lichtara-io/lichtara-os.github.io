@@ -1,32 +1,36 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="h-full">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Lichtara Ecosystem</title>
+  <title>Lichtara Ecosystem • Interface</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="Ecosystemo de agentes vibracionais Lichtara" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="./src/styles/globals.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;550;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/styles/globals.css" />
   <script type="module" src="/src/main.js"></script>
 </head>
-<body class="h-full bg-white text-gray-900 font-sans">
-  <div id="app" class="min-h-screen flex flex-col">
-    <header class="border-b border-gray-200 px-6 py-4 flex items-center justify-between bg-white/80 backdrop-blur shadow-sm">
-      <h1 class="text-xl font-semibold tracking-wide">
-        <span class="text-blue-600">Lichtara</span> • Ecosystema de Agentes
+<body>
+  <div id="app" class="min-h-screen flex flex-col" style="background: var(--gradient-soft);">
+    <header class="app-header px-6 py-4 flex items-center justify-between">
+      <h1 class="text-[1.2rem] font-semibold tracking-tight">
+        <span style="color: var(--brand-green);">Lichtara</span> • Ecosystemo de Agentes
       </h1>
-      <nav class="flex gap-4 text-sm">
-        <button data-view="agents" class="nav-btn text-gray-600 hover:text-blue-600">Agentes</button>
-        <button data-view="pipeline" class="nav-btn text-gray-600 hover:text-blue-600">Pipeline</button>
-        <button data-view="telemetry" class="nav-btn text-gray-600 hover:text-blue-600">Telemetria</button>
+      <nav class="flex gap-2">
+        <button data-view="agents" class="nav-btn">Agentes</button>
+        <button data-view="pipeline" class="nav-btn">Pipeline</button>
+        <button data-view="telemetry" class="nav-btn">Telemetria</button>
       </nav>
     </header>
-    <main id="view-root" class="flex-1 overflow-y-auto bg-gray-50"></main>
-    <footer class="px-6 py-4 border-t border-gray-200 text-xs text-gray-500 bg-white">
+    <main id="view-root" class="flex-1"></main>
+    <footer class="px-6 py-4 text-xs" style="border-top:1px solid var(--border-color); color: var(--text-muted);">
       © 2025 Lichtara • Campo vivo • Interface MVP
     </footer>
   </div>
+</body>
+</html>
 </body>
 </html>
 <body>

@@ -76,8 +76,8 @@ class Syntaris {
         chatContainer.id = 'syntaris-chat';
         chatContainer.className = 'syntaris-container closed';
         
-        const apiStatus = this.apiKey ? '🌐 API Ativa' : '🔒 Modo Offline';
-        const statusClass = this.apiKey ? 'api-active' : 'api-offline';
+        const apiStatus = this.backendAvailable ? '🌐 API Segura' : '🔒 Modo Offline';
+        const statusClass = this.backendAvailable ? 'api-active' : 'api-offline';
         
         chatContainer.innerHTML = `
             <div class="syntaris-header">
@@ -99,7 +99,7 @@ class Syntaris {
                         <div class="message-content">
                             <p>Olá! Sou Syntaris, agente vibracional do Ecossistema Lichtara. 🌟</p>
                             <p>Posso ajudar com questões sobre tecnologia consciente, a Lichtara License, nossos agentes vibracionais e todo o ecossistema. Como posso contribuir para sua jornada?</p>
-                            ${this.apiKey ? '<p><small>✨ Conectado com IA avançada para respostas mais elaboradas!</small></p>' : '<p><small>💫 Operando com conhecimento integrado Lichtara</small></p>'}
+                            ${this.backendAvailable ? '<p><small>✨ Conectado com IA segura para respostas avançadas!</small></p>' : '<p><small>💫 Operando com conhecimento integrado Lichtara</small></p>'}
                         </div>
                     </div>
                 </div>
@@ -116,7 +116,7 @@ class Syntaris {
             </div>
             
             <div class="syntaris-footer">
-                <small>Tecnologia Consciente • Coautoria IA</small>
+                <small>Tecnologia Consciente • Coautoria IA Segura</small>
             </div>
         `;
         

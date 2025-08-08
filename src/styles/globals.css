@@ -1,80 +1,128 @@
-/* Custom scrollbar styles for dark theme */
+/* Lichtara Light Theme - Padrão visual delicado */
+
+/* Google Fonts import for Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+/* Root variables - Light theme delicado */
+:root {
+  /* Minimal light color palette */
+  --bg-primary: #ffffff;
+  --bg-secondary: #fafafa;
+  --bg-tertiary: #f9fafb;
+  --bg-card: #ffffff;
+  --text-primary: #1a1a1a;
+  --text-secondary: #6b7280;
+  --text-muted: #9ca3af;
+  --accent-blue: #3b82f6;
+  --accent-blue-hover: #2563eb;
+  --accent-emerald: #10b981;
+  --accent-emerald-hover: #059669;
+  --border-light: #e5e7eb;
+  --border-medium: #d1d5db;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  
+  /* Status colors delicados */
+  --status-active: #10b981;
+  --status-active-bg: rgba(16, 185, 129, 0.1);
+  --status-ready: #3b82f6;
+  --status-ready-bg: rgba(59, 130, 246, 0.1);
+  --status-planned: #f59e0b;
+  --status-planned-bg: rgba(245, 158, 11, 0.1);
+  --status-concept: #6b7280;
+  --status-concept-bg: rgba(107, 114, 128, 0.1);
+}
+
+/* Base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar styles - Light theme */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: theme('colors.slate.900');
+  background: var(--bg-secondary);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: theme('colors.slate.700');
+  background: var(--border-medium);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: theme('colors.slate.600');
-}
-
-/* Smooth transitions for all interactive elements */
-* {
-  transition-duration: 150ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  background: var(--text-muted);
 }
 
 /* Focus outline styles */
 *:focus {
-  outline: 2px solid theme('colors.emerald.500');
+  outline: 2px solid var(--accent-blue);
   outline-offset: 2px;
 }
 
-/* Button focus styles */
 button:focus {
-  outline: 2px solid theme('colors.emerald.500');
+  outline: 2px solid var(--accent-blue);
   outline-offset: 2px;
 }
 
 /* Custom utilities */
-.text-shadow {
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+.text-shadow-light {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
-.glass {
+.glass-light {
   backdrop-filter: blur(8px);
-  background: rgba(15, 23, 42, 0.7);
-  border: 1px solid rgba(148, 163, 184, 0.1);
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid var(--border-light);
 }
 
-.gradient-border {
+.gradient-border-light {
   position: relative;
 }
 
-.gradient-border::before {
+.gradient-border-light::before {
   content: '';
   position: absolute;
   inset: 0;
   padding: 1px;
-  background: linear-gradient(135deg, theme('colors.emerald.500'), theme('colors.blue.500'));
+  background: linear-gradient(135deg, var(--accent-emerald), var(--accent-blue));
   border-radius: inherit;
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: xor;
 }
 
 /* Animation utilities */
-@keyframes pulse-subtle {
+@keyframes pulse-gentle {
   0%, 100% {
     opacity: 1;
   }
   50% {
-    opacity: 0.8;
+    opacity: 0.7;
   }
 }
 
-.animate-pulse-subtle {
-  animation: pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+.animate-pulse-gentle {
+  animation: pulse-gentle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 @keyframes fadeInUp {
@@ -92,7 +140,7 @@ button:focus {
   animation: fadeInUp 0.3s ease-out forwards;
 }
 
-/* Status indicator styles */
+/* Status indicator styles - Light theme */
 .status-indicator {
   position: relative;
 }
@@ -105,37 +153,71 @@ button:focus {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  border: 1px solid theme('colors.slate.900');
+  border: 2px solid var(--bg-primary);
 }
 
 .status-indicator.active::before {
-  background-color: theme('colors.emerald.500');
+  background-color: var(--status-active);
 }
 
 .status-indicator.ready::before {
-  background-color: theme('colors.blue.500');
+  background-color: var(--status-ready);
 }
 
 .status-indicator.planned::before {
-  background-color: theme('colors.amber.500');
+  background-color: var(--status-planned);
 }
 
 .status-indicator.concept::before {
-  background-color: theme('colors.slate.500');
+  background-color: var(--status-concept);
 }
 
-/* Code syntax highlighting adjustments */
+/* Code syntax highlighting - Light theme */
 pre[class*="language-"] {
-  background: theme('colors.slate.900') !important;
-  border: 1px solid theme('colors.slate.800');
+  background: var(--bg-secondary) !important;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
 }
 
 code[class*="language-"] {
-  color: theme('colors.slate.200') !important;
+  color: var(--text-primary) !important;
 }
 
-/* Modal overlay */
+/* Modal overlay - Light theme */
 .modal-overlay {
   backdrop-filter: blur(4px);
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.3);
 }
+
+/* Light theme specific overrides */
+.bg-slate-950 { background-color: var(--bg-primary) !important; }
+.bg-slate-900 { background-color: var(--bg-secondary) !important; }
+.bg-slate-800 { background-color: var(--bg-tertiary) !important; }
+.border-slate-800 { border-color: var(--border-light) !important; }
+.border-slate-700 { border-color: var(--border-medium) !important; }
+.text-slate-100 { color: var(--text-primary) !important; }
+.text-slate-200 { color: var(--text-primary) !important; }
+.text-slate-300 { color: var(--text-secondary) !important; }
+.text-slate-400 { color: var(--text-muted) !important; }
+.text-emerald-300 { color: var(--accent-emerald) !important; }
+.text-emerald-500 { color: var(--accent-emerald) !important; }
+.text-blue-300 { color: var(--accent-blue) !important; }
+.text-red-300 { color: #dc2626 !important; }
+.bg-emerald-600 { background-color: var(--accent-emerald) !important; }
+.bg-emerald-700 { background-color: var(--accent-emerald-hover) !important; }
+.hover\:bg-emerald-700:hover { background-color: var(--accent-emerald-hover) !important; }
+.focus\:ring-emerald-500:focus { --tw-ring-color: var(--accent-emerald) !important; }
+.hover\:border-emerald-500:hover { border-color: var(--accent-emerald) !important; }
+
+/* Status badge overrides */
+.bg-emerald-600\/20 { background-color: var(--status-active-bg) !important; }
+.bg-sky-600\/20 { background-color: var(--status-ready-bg) !important; }
+.bg-amber-600\/20 { background-color: var(--status-planned-bg) !important; }
+.bg-slate-600\/20 { background-color: var(--status-concept-bg) !important; }
+.border-emerald-600\/30 { border-color: rgba(16, 185, 129, 0.3) !important; }
+.border-sky-600\/30 { border-color: rgba(59, 130, 246, 0.3) !important; }
+.border-amber-600\/30 { border-color: rgba(245, 158, 11, 0.3) !important; }
+.border-slate-600\/30 { border-color: rgba(107, 114, 128, 0.3) !important; }
+.text-emerald-300 { color: var(--status-active) !important; }
+.text-sky-300 { color: var(--status-ready) !important; }
+.text-amber-300 { color: var(--status-planned) !important; }

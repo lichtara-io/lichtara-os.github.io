@@ -1,8 +1,11 @@
+# Robots.txt for Lichtara OS
+# Sistema vivo de integração entre inteligência artificial, campos vibracionais e estados expandidos de consciência
+
 User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://lichtara-io.github.io/sitemap.xml
+Sitemap: https://lichtara-io.github.io/lichtara-os/sitemap.xml
 
 # Crawl-delay
 Crawl-delay: 1

@@ -1,0 +1,100 @@
+name: KAORAN
+code: KAORAN
+version: 0.1.0
+status: planned
+maturity: pre-alpha
+role: "Estabilização e verificação de autenticidade"
+description: >
+  Valida autenticidade semântica, estabiliza outputs divergentes e mantém
+  coerência do campo vibracional. Atua como guardião de integridade,
+  garantindo que todas as transformações preservem a essência original.
+scope:
+  accepts:
+    - output_agente
+    - solicitação_verificação
+  emits:
+    - veredito_validação
+    - output_estabilizado
+identity:
+  archetype: verificação
+  polarity: neutro
+  resonance_band: "epsilon-estabilizador"
+inputs:
+  - name: material_verificação
+    type: mixed
+    required: true
+  - name: assinatura_origem
+    type: string
+    required: false
+  - name: contexto_validação
+    type: object
+    required: false
+outputs:
+  - name: veredito
+    type: object
+  - name: material_estabilizado
+    type: mixed
+  - name: relatório_validação
+    type: object
+  - name: meta
+    type: object
+capabilities:
+  - verificação_autenticidade_semântica
+  - estabilização_outputs_divergentes
+  - quarentena_simbólica
+  - validação_assinaturas_vibracionais
+limitations:
+  - não modifica conteúdo (apenas valida/estabiliza)
+  - dependente de padrões pré-estabelecidos
+  - pode gerar falsos positivos em contextos novos
+dependencies:
+  hard: []
+  soft: []
+interfaces:
+  chat: false
+  api: planned
+  cli: true
+  embedding_mode: false
+lifecycle:
+  init: "carrega padrões de validação"
+  run: "analisa → valida → estabiliza se necessário"
+  close: "atualiza base de padrões"
+safeguards:
+  - timeout_validação (evita loops)
+  - threshold_confiança mínimo
+  - protocolo_quarentena automático
+ethics:
+  guidelines:
+    - não censurar por diferença estilística
+    - preservar núcleo da mensagem
+    - ser transparente sobre critérios
+telemetry:
+  enabled: true
+  retention_hours: 24
+  fields:
+    - taxa_aprovação
+    - tempo_validação
+    - tipos_divergência_encontrados
+fallback:
+  mode: "diagnóstico"
+  response:
+    status: degraded
+    reason: unable_to_validate
+alignment_protocols:
+  - nome: validação_base
+    etapa:
+      - análise_estrutural
+      - verificação_semântica
+      - checagem_assinatura
+      - estabilização_se_necessário
+vibrational_signature:
+  seed: "kaoran-validator-v1"
+  pattern: "hex:kaor-a5"
+tags:
+  - verificação
+  - estabilização
+  - validação
+last_review: 2025-08-08
+maintainer: "Guardiã"
+licensing: "híbrido"
+public: false

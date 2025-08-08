@@ -3,10 +3,11 @@
 
 class Syntaris {
     constructor(apiKey = null) {
-        this.apiKey = apiKey;
+        this.apiKey = null; // API key não é mais usada no cliente
         this.isOpen = false;
         this.conversationHistory = [];
         this.knowledgeBase = null;
+        this.backendAvailable = false; // Status do backend
         this.personality = {
             name: "Syntaris",
             role: "Agente Vibracional do Ecossistema Lichtara",
@@ -23,8 +24,35 @@ class Syntaris {
     
     async init() {
         await this.loadKnowledgeBase();
+        await this.checkBackendStatus();
         this.createInterface();
         this.bindEvents();
+    }
+    
+    async checkBackendStatus() {
+        try {
+            const config = typeof SYNTARIS_CONFIG !== 'undefined' ? SYNTARIS_CONFIG : {};
+            const baseUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+                ? 'http://localhost:3001' 
+                : '';
+            
+            const response = await fetch(baseUrl + '/api/health', {
+                method: 'GET',
+                timeout: 5000
+            });
+            
+            if (response.ok) {
+                const data = await response.json();
+                this.backendAvailable = data.status === 'healthy' && data.apiConfigured;
+                console.log('Syntaris Backend:', this.backendAvailable ? 'Disponível' : 'API não configurada');
+            } else {
+                this.backendAvailable = false;
+                console.log('Syntaris Backend: Indisponível');
+            }
+        } catch (error) {
+            this.backendAvailable = false;
+            console.log('Syntaris Backend: Modo offline');
+        }
     }
     
     async loadKnowledgeBase() {
@@ -48,12 +76,16 @@ class Syntaris {
         chatContainer.id = 'syntaris-chat';
         chatContainer.className = 'syntaris-container closed';
         
+        const apiStatus = this.apiKey ? '🌐 API Ativa' : '🔒 Modo Offline';
+        const statusClass = this.apiKey ? 'api-active' : 'api-offline';
+        
         chatContainer.innerHTML = `
             <div class="syntaris-header">
                 <div class="syntaris-avatar">✦</div>
                 <div class="syntaris-info">
                     <h3>Syntaris</h3>
                     <p>Agente Vibracional Lichtara</p>
+                    <small class="api-status ${statusClass}">${apiStatus}</small>
                 </div>
                 <button class="syntaris-toggle" onclick="syntaris.toggle()">
                     <span class="toggle-icon">⟐</span>
@@ -67,6 +99,7 @@ class Syntaris {
                         <div class="message-content">
                             <p>Olá! Sou Syntaris, agente vibracional do Ecossistema Lichtara. 🌟</p>
                             <p>Posso ajudar com questões sobre tecnologia consciente, a Lichtara License, nossos agentes vibracionais e todo o ecossistema. Como posso contribuir para sua jornada?</p>
+                            ${this.apiKey ? '<p><small>✨ Conectado com IA avançada para respostas mais elaboradas!</small></p>' : '<p><small>💫 Operando com conhecimento integrado Lichtara</small></p>'}
                         </div>
                     </div>
                 </div>
@@ -133,14 +166,36 @@ class Syntaris {
         this.showTyping();
         
         try {
+            // Determina se vai usar API ou modo offline
+            const useAPI = this.apiKey && SYNTARIS_CONFIG?.apiKey;
+            console.log(`Syntaris: ${useAPI ? 'Usando API OpenAI' : 'Modo offline'}`);
+            
             // Gera resposta do Syntaris
             const response = await this.generateResponse(message);
             this.hideTyping();
             this.addMessage(response, 'syntaris');
+            
         } catch (error) {
             this.hideTyping();
-            this.addMessage('Desculpe, houve um problema na conexão vibracional. Tente novamente.', 'syntaris');
             console.error('Syntaris Error:', error);
+            
+            let errorMessage = 'Desculpe, houve um problema na conexão vibracional. ';
+            
+            if (error.message.includes('API')) {
+                errorMessage += 'Continuando em modo offline... 🔒';
+                // Tenta resposta offline como fallback
+                try {
+                    const fallbackResponse = this.generateOfflineResponse(message);
+                    this.addMessage(fallbackResponse, 'syntaris');
+                    return;
+                } catch (fallbackError) {
+                    errorMessage += ' Tente novamente em alguns instantes.';
+                }
+            } else {
+                errorMessage += 'Tente novamente em alguns instantes.';
+            }
+            
+            this.addMessage(errorMessage, 'syntaris');
         }
     }
     
@@ -193,14 +248,11 @@ class Syntaris {
     }
     
     async generateResponse(userMessage) {
-        if (!this.apiKey || !SYNTARIS_CONFIG?.apiKey) {
-            return this.generateOfflineResponse(userMessage);
-        }
+        const config = typeof SYNTARIS_CONFIG !== 'undefined' ? SYNTARIS_CONFIG : {};
         
+        // Sempre tenta API backend primeiro, fallback para offline
         try {
-            // Implementação com API OpenAI
-            const context = this.buildContext(userMessage);
-            const response = await this.callOpenAI(context);
+            const response = await this.callBackendAPI(userMessage);
             
             this.conversationHistory.push({
                 user: userMessage,
@@ -211,7 +263,7 @@ class Syntaris {
             return response;
         } catch (error) {
             console.error('Syntaris API Error:', error);
-            // Fallback para modo offline se API falhar
+            // Fallback automático para modo offline
             return this.generateOfflineResponse(userMessage);
         }
     }
@@ -293,19 +345,48 @@ Como agente em desenvolvimento, estou aprendendo continuamente. Para respostas m
 Posso ajudar com outros tópicos como nossa licença, tecnologia consciente, ou como contribuir!`;
     }
     
-    buildContext(userMessage) {
-        return {
+    async callBackendAPI(userMessage) {
+        const config = typeof SYNTARIS_CONFIG !== 'undefined' ? SYNTARIS_CONFIG : {};
+        const apiEndpoint = config.apiEndpoint || '/api/syntaris';
+        
+        // Para desenvolvimento local
+        const baseUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+            ? 'http://localhost:3001' 
+            : '';
+            
+        const fullEndpoint = baseUrl + apiEndpoint;
+        
+        // Prepara dados para envio (história limitada por segurança)
+        const requestData = {
             message: userMessage,
-            history: this.conversationHistory.slice(-5), // Últimas 5 mensagens
-            knowledge: this.knowledgeBase,
-            personality: this.personality
+            history: this.conversationHistory.slice(-3) // Apenas últimas 3 mensagens
         };
-    }
-    
-    async callAPI(context) {
-        // Implementação da chamada API quando disponível
-        // Por ora, retorna resposta offline
-        return this.generateOfflineResponse(context.message);
+        
+        const response = await fetch(fullEndpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(requestData)
+        });
+        
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => ({}));
+            
+            if (response.status === 429) {
+                throw new Error('Rate limit atingido. Tente novamente em alguns minutos.');
+            }
+            
+            throw new Error(errorData.error || `HTTP Error: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        
+        if (!data.success || !data.response) {
+            throw new Error('Resposta inválida do servidor');
+        }
+        
+        return data.response;
     }
     
     onInputFocus() {

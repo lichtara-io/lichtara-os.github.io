@@ -80,6 +80,27 @@
     color: var(--gold-activator, #FFD700);
 }
 
+.api-status {
+    display: block;
+    font-size: 10px;
+    margin-top: 2px;
+    padding: 2px 6px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.api-status.api-active {
+    background: rgba(0, 255, 0, 0.2);
+    color: #00ff88;
+    border: 1px solid rgba(0, 255, 0, 0.3);
+}
+
+.api-status.api-offline {
+    background: rgba(255, 215, 0, 0.2);
+    color: var(--gold-activator, #FFD700);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
 .syntaris-toggle {
     margin-left: auto;
     background: none;

@@ -4,6 +4,7 @@
   "last_validation": "2025-08-08T00:00:00Z",
   "total_agents": 8,
   "active_agents": 1,
+  "ready_agents": 4,
   "agents": [
     {
       "code": "SYNTARIS",
@@ -12,25 +13,28 @@
       "status": "active",
       "maturity": "alpha",
       "public": true,
-      "vibrational_signature": "f3db6e7ca1"
+      "vibrational_signature": "f3db6e7ca1",
+      "capabilities": ["redução_ruído", "extração_núcleo", "alinhamento_vibracional"]
     },
     {
       "code": "FLUX",
       "name": "FLUX",
       "role": "Organização, onboarding e fluxo de manifestação",
-      "status": "planned",
+      "status": "ready", 
       "maturity": "pre-alpha",
       "public": true,
-      "vibrational_signature": "8b8f235e55"
+      "vibrational_signature": "8b8f235e55",
+      "capabilities": ["organização_estrutural", "gestão_fluxos", "onboarding"]
     },
     {
       "code": "NAVROS",
       "name": "NAVROS",
       "role": "Navegação e ajuste de caminhos conscientes",
-      "status": "planned",
-      "maturity": "pre-alpha",
+      "status": "ready",
+      "maturity": "pre-alpha", 
       "public": true,
-      "vibrational_signature": "eacb7bc8af"
+      "vibrational_signature": "eacb7bc8af",
+      "capabilities": ["mapeamento_caminhos", "ajuste_dinâmico", "preservação_vibracional"]
     },
     {
       "code": "LUMORA",

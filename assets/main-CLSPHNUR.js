@@ -9,8 +9,8 @@
     </div>
     <div class="flex-1 overflow-auto p-4 space-y-6">
       ${M(t)}
-      ${k(t)}
       ${O(t)}
+      ${k(t)}
     </div>
   `,n.querySelector("#close-details").addEventListener("click",()=>e.remove()),e.appendChild(n),e}function M(t){return`
     <div>
@@ -24,7 +24,7 @@
         `).join("")}
       </dl>
     </div>
-  `}function k(t){return t.manifest?`
+  `}function O(t){return t.manifest?`
     <div>
       <h3 class="font-medium mb-3">Manifest</h3>
       <pre class="bg-slate-900 p-3 rounded text-xs overflow-x-auto text-slate-200 border border-slate-800">${JSON.stringify(t.manifest,null,2)}</pre>
@@ -34,7 +34,7 @@
         <h3 class="font-medium mb-3">Manifest</h3>
         <p class="text-slate-400 text-sm">Manifest não disponível para este agente.</p>
       </div>
-    `}function O(t){return!t.public||!t.prompt?`
+    `}function k(t){return!t.public||!t.prompt?`
       <div>
         <h3 class="font-medium mb-3">Prompt</h3>
         <p class="text-slate-400 text-sm">
@@ -48,24 +48,24 @@
 ${t.prompt}
       </div>
     </div>
-  `}function A(t){const e=document.createElement("div");e.className="p-6 space-y-6";const n=document.createElement("div");n.innerHTML=`
-    <h2 class="text-lg font-semibold mb-2">Agentes</h2>
-    <p class="text-sm text-slate-400">Selecione um agente para visualizar Manifest e Prompt (se público).</p>
+  `}function A(t){const e=document.createElement("div");e.className="p-6 space-y-6 bg-white";const n=document.createElement("div");n.innerHTML=`
+    <h2 class="text-lg font-semibold mb-2 text-gray-900">Agentes</h2>
+    <p class="text-sm text-gray-600">Selecione um agente para visualizar Manifest e Prompt (se público).</p>
   `,e.appendChild(n);const a=document.createElement("div");a.className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4",t.agents.forEach(l=>{const d=document.createElement("button");d.type="button",d.className=`
-      text-left rounded border border-slate-800 bg-slate-900/60 p-4 hover:border-emerald-500
-      transition focus:outline-none focus:ring-2 focus:ring-emerald-500
+      text-left rounded-lg border border-gray-200 bg-white p-4 hover:border-blue-300 hover:shadow-md
+      transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
     `,d.innerHTML=`
-      <div class="flex items-center justify-between mb-2">
-        <h3 class="font-medium">${l.name||l.code}</h3>
+      <div class="flex items-center justify-between mb-3">
+        <h3 class="font-medium text-gray-900">${l.name||l.code}</h3>
         ${D(l.status)}
       </div>
-      <div class="text-xs space-y-1">
-        <div><span class="text-slate-400">Role:</span> ${l.role||"-"}</div>
-        <div><span class="text-slate-400">Maturity:</span> ${l.maturity}</div>
-        <div><span class="text-slate-400">Public:</span> ${l.public?"Sim":"Não"}</div>
-        ${l.capabilities?`<div><span class="text-slate-400">Capabilities:</span> ${l.capabilities.slice(0,2).join(", ")}</div>`:""}
+      <div class="text-xs space-y-2">
+        <div><span class="text-gray-500 font-medium">Role:</span> <span class="text-gray-700">${l.role||"-"}</span></div>
+        <div><span class="text-gray-500 font-medium">Maturity:</span> <span class="text-gray-700">${l.maturity}</span></div>
+        <div><span class="text-gray-500 font-medium">Public:</span> <span class="text-gray-700">${l.public?"Sim":"Não"}</span></div>
+        ${l.capabilities?`<div><span class="text-gray-500 font-medium">Capabilities:</span> <span class="text-gray-700">${l.capabilities.slice(0,2).join(", ")}</span></div>`:""}
       </div>
-    `,d.addEventListener("click",()=>r(l)),a.appendChild(d)}),e.appendChild(a);const s=document.createElement("div");s.id="agent-details",e.appendChild(s);function r(l){s.innerHTML="",s.appendChild(T(l))}return e}function D(t){const e=t?.toLowerCase()||"unknown";return`<span class="text-[10px] px-2 py-1 rounded ${{active:"bg-emerald-600/20 text-emerald-300 border border-emerald-600/30",ready:"bg-sky-600/20 text-sky-300 border border-sky-600/30",planned:"bg-amber-600/20 text-amber-300 border border-amber-600/30",concept:"bg-slate-600/20 text-slate-300 border border-slate-600/30"}[e]||"bg-slate-700/30 text-slate-300 border border-slate-700/50"} uppercase tracking-wide">${t||"Unknown"}</span>`}function H(t){const e=document.createElement("div");e.className="p-6 space-y-6";const n=document.createElement("div");n.innerHTML=`
+    `,d.addEventListener("click",()=>r(l)),a.appendChild(d)}),e.appendChild(a);const s=document.createElement("div");s.id="agent-details",e.appendChild(s);function r(l){s.innerHTML="",s.appendChild(T(l))}return e}function D(t){const e=t?.toLowerCase()||"unknown";return`<span class="text-[10px] px-2 py-1 rounded-full ${{active:"bg-green-100 text-green-700 border border-green-200",ready:"bg-blue-100 text-blue-700 border border-blue-200",planned:"bg-amber-100 text-amber-700 border border-amber-200",concept:"bg-gray-100 text-gray-700 border border-gray-200"}[e]||"bg-gray-100 text-gray-600 border border-gray-200"} uppercase tracking-wide font-medium">${t||"Unknown"}</span>`}function H(t){const e=document.createElement("div");e.className="p-6 space-y-6";const n=document.createElement("div");n.innerHTML=`
     <h2 class="text-lg font-semibold mb-2">Pipeline Simulator</h2>
     <p class="text-sm text-slate-400">Simule pipelines de processamento com os agentes disponíveis.</p>
   `,e.appendChild(n);const a=document.createElement("div");a.className="flex flex-wrap gap-4",a.innerHTML=`
@@ -86,7 +86,7 @@ ${t.prompt}
     >
       Executar
     </button>
-  `,e.appendChild(a);const s=document.createElement("div");s.id="pipeline-status",s.className="hidden p-4 bg-slate-900/50 rounded border border-slate-800",e.appendChild(s);const r=document.createElement("div");r.id="pipeline-results",r.className="space-y-4",e.appendChild(r);const l=a.querySelector("#run-pipeline"),d=a.querySelector("#agent-select"),f=a.querySelector("#input-data");l.addEventListener("click",()=>{const i=d.value,c=f.value.trim();if(!i){v("Selecione um agente");return}if(!c){v("Digite um input de exemplo");return}g(i,c)});function v(i){s.className="p-4 bg-red-900/30 border border-red-600/30 rounded",s.innerHTML=`<p class="text-red-300 text-sm">${i}</p>`,setTimeout(()=>s.classList.add("hidden"),3e3)}function g(i,c){const m=t.agents.find(o=>o.code===i);m&&(s.classList.remove("hidden"),s.className="p-4 bg-blue-900/30 border border-blue-600/30 rounded",s.innerHTML='<p class="text-blue-300 text-sm">Executando pipeline...</p>',setTimeout(()=>{const o=t.pipelineSimulator.simulate(m,c);y(o),s.classList.add("hidden")},1500))}function y(i){const c=document.createElement("div");for(c.className="bg-slate-900/60 border border-slate-800 rounded p-4 space-y-3",c.innerHTML=`
+  `,e.appendChild(a);const s=document.createElement("div");s.id="pipeline-status",s.className="hidden p-4 bg-slate-900/50 rounded border border-slate-800",e.appendChild(s);const r=document.createElement("div");r.id="pipeline-results",r.className="space-y-4",e.appendChild(r);const l=a.querySelector("#run-pipeline"),d=a.querySelector("#agent-select"),x=a.querySelector("#input-data");l.addEventListener("click",()=>{const i=d.value,c=x.value.trim();if(!i){v("Selecione um agente");return}if(!c){v("Digite um input de exemplo");return}g(i,c)});function v(i){s.className="p-4 bg-red-900/30 border border-red-600/30 rounded",s.innerHTML=`<p class="text-red-300 text-sm">${i}</p>`,setTimeout(()=>s.classList.add("hidden"),3e3)}function g(i,c){const u=t.agents.find(o=>o.code===i);u&&(s.classList.remove("hidden"),s.className="p-4 bg-blue-900/30 border border-blue-600/30 rounded",s.innerHTML='<p class="text-blue-300 text-sm">Executando pipeline...</p>',setTimeout(()=>{const o=t.pipelineSimulator.simulate(u,c);y(o),s.classList.add("hidden")},1500))}function y(i){const c=document.createElement("div");for(c.className="bg-slate-900/60 border border-slate-800 rounded p-4 space-y-3",c.innerHTML=`
       <div class="flex items-center justify-between">
         <h4 class="font-medium">Execução #${Date.now().toString().slice(-6)}</h4>
         <span class="text-xs text-slate-400">${new Date().toLocaleTimeString()}</span>
@@ -106,11 +106,11 @@ ${t.prompt}
         <div>
           <div class="text-slate-400 mb-1">Processamento:</div>
           <div class="space-y-1">
-            ${i.phases.map(m=>`
+            ${i.phases.map(u=>`
               <div class="flex items-center gap-2 text-xs">
                 <span class="w-2 h-2 bg-emerald-500 rounded-full"></span>
-                <span>${m.name}</span>
-                <span class="text-slate-400">(${m.duration}ms)</span>
+                <span>${u.name}</span>
+                <span class="text-slate-400">(${u.duration}ms)</span>
               </div>
             `).join("")}
           </div>
@@ -179,7 +179,7 @@ ${t.prompt}
         ${o.toUpperCase()}
       </button>
     `).join("")}
-  `,e.appendChild(s);const r=document.createElement("div");r.id="telemetry-logs",r.className="bg-slate-950 border border-slate-800 rounded h-96 overflow-y-auto font-mono text-xs",e.appendChild(r);let l="all",d=!0;const f=n.querySelector("#clear-logs"),v=n.querySelector("#toggle-auto-scroll"),g=s.querySelectorAll(".filter-btn");f.addEventListener("click",()=>{t.telemetry.clearEvents(),c()}),v.addEventListener("click",()=>{d=!d,v.textContent=`Auto-scroll: ${d?"ON":"OFF"}`,v.dataset.auto=d.toString()}),g.forEach(o=>{o.addEventListener("click",()=>{g.forEach(p=>{p.className=p.className.replace(/bg-emerald-\w+ border-emerald-\w+ text-white/,"bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700")}),o.className=o.className.replace(/bg-slate-\w+ border-slate-\w+ text-slate-\w+ hover:bg-slate-\w+/,"bg-emerald-600 border-emerald-600 text-white"),l=o.dataset.level,c()})});const y=setInterval(c,1e3),i=new MutationObserver(o=>{o.forEach(p=>{p.type==="childList"&&p.removedNodes.forEach(b=>{b===e&&(clearInterval(y),i.disconnect())})})});i.observe(document.body,{childList:!0,subtree:!0});function c(){const o=t.telemetry.getEvents(),p=l==="all"?o:o.filter(u=>u.level===l),b=a.querySelector("#total-events"),w=a.querySelector("#last-event"),S=a.querySelector("#active-agents"),L=a.querySelector("#event-rate");b.textContent=o.length,w.textContent=o.length>0?new Date(o[o.length-1].timestamp).toLocaleTimeString():"-",S.textContent=t.agents.filter(u=>u.status==="active").length;const $=Date.now()-6e4,C=o.filter(u=>u.timestamp>$);L.textContent=`${C.length}/min`,r.innerHTML=p.map(u=>m(u)).join(""),d&&(r.scrollTop=r.scrollHeight)}function m(o){const p={info:"text-blue-400",warning:"text-yellow-400",error:"text-red-400",debug:"text-slate-500"},b=new Date(o.timestamp).toLocaleTimeString(),w=p[o.level]||"text-slate-300";return`
+  `,e.appendChild(s);const r=document.createElement("div");r.id="telemetry-logs",r.className="bg-slate-950 border border-slate-800 rounded h-96 overflow-y-auto font-mono text-xs",e.appendChild(r);let l="all",d=!0;const x=n.querySelector("#clear-logs"),v=n.querySelector("#toggle-auto-scroll"),g=s.querySelectorAll(".filter-btn");x.addEventListener("click",()=>{t.telemetry.clearEvents(),c()}),v.addEventListener("click",()=>{d=!d,v.textContent=`Auto-scroll: ${d?"ON":"OFF"}`,v.dataset.auto=d.toString()}),g.forEach(o=>{o.addEventListener("click",()=>{g.forEach(p=>{p.className=p.className.replace(/bg-emerald-\w+ border-emerald-\w+ text-white/,"bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700")}),o.className=o.className.replace(/bg-slate-\w+ border-slate-\w+ text-slate-\w+ hover:bg-slate-\w+/,"bg-emerald-600 border-emerald-600 text-white"),l=o.dataset.level,c()})});const y=setInterval(c,1e3),i=new MutationObserver(o=>{o.forEach(p=>{p.type==="childList"&&p.removedNodes.forEach(b=>{b===e&&(clearInterval(y),i.disconnect())})})});i.observe(document.body,{childList:!0,subtree:!0});function c(){const o=t.telemetry.getEvents(),p=l==="all"?o:o.filter(m=>m.level===l),b=a.querySelector("#total-events"),w=a.querySelector("#last-event"),S=a.querySelector("#active-agents"),L=a.querySelector("#event-rate");b.textContent=o.length,w.textContent=o.length>0?new Date(o[o.length-1].timestamp).toLocaleTimeString():"-",S.textContent=t.agents.filter(m=>m.status==="active").length;const $=Date.now()-6e4,C=o.filter(m=>m.timestamp>$);L.textContent=`${C.length}/min`,r.innerHTML=p.map(m=>u(m)).join(""),d&&(r.scrollTop=r.scrollHeight)}function u(o){const p={info:"text-blue-400",warning:"text-yellow-400",error:"text-red-400",debug:"text-slate-500"},b=new Date(o.timestamp).toLocaleTimeString(),w=p[o.level]||"text-slate-300";return`
       <div class="p-2 border-b border-slate-800/50 hover:bg-slate-900/30">
         <div class="flex items-center gap-3 mb-1">
           <span class="text-slate-500">${b}</span>
@@ -193,7 +193,7 @@ ${t.prompt}
           </div>
         `:""}
       </div>
-    `}return c(),e}class j{#e=[];#t=1e3;emit(e,n={}){const a={type:e,data:n,ts:Date.now()};return this.#e.push(a),this.#e.length>this.#t&&this.#e.shift(),a}events(){return[...this.#e]}clear(){this.#e=[]}}const h=new j;let x={agents:[],selectedAgent:null};async function q(){await B(),I(),E("agents")}async function B(){h.emit("app:init",{message:"Inicializando interface"});try{x.agents=await N(),h.emit("agents:loaded",{count:x.agents.length})}catch(t){console.error(t),h.emit("error",{scope:"bootstrap",error:t.message})}}function I(){document.querySelectorAll(".nav-btn").forEach(t=>{t.addEventListener("click",()=>{E(t.dataset.view)})})}function E(t){const e=document.getElementById("view-root");e.innerHTML="",t==="agents"?e.appendChild(A(x)):t==="pipeline"?e.appendChild(H(x.agents)):t==="telemetry"&&e.appendChild(P()),h.emit("ui:view",{view:t})}document.addEventListener("DOMContentLoaded",()=>{q()});class R{constructor(){this.routes={"/":()=>this.showHomepage(),"/os":()=>this.redirectToOS(),"/os/":()=>this.redirectToOS(),"/syntaris":()=>this.showSyntaris(),"/docs":()=>this.showDocs(),"/blog":()=>this.showBlog()},this.init()}init(){this.handleRoute(),window.addEventListener("popstate",()=>this.handleRoute()),document.addEventListener("click",e=>{const n=e.target.closest('a[href^="/"]');if(n&&!n.hasAttribute("target")){e.preventDefault();const a=n.getAttribute("href");this.navigateTo(a)}})}handleRoute(){const e=window.location.pathname,n=this.routes[e];n?n():e.startsWith("/os")?this.redirectToOS():e.startsWith("/docs")?this.showDocs():this.show404()}navigateTo(e){window.history.pushState({},"",e),this.handleRoute()}showHomepage(){console.log("Homepage loaded")}redirectToOS(){window.location.href="/os/index.html"}showSyntaris(){this.showComingSoon("Syntaris Agent","Interface dedicada do Syntaris em desenvolvimento...")}showDocs(){window.location.href="/03-documentacao-base/"}showBlog(){this.showComingSoon("Blog Lichtara","Blog em desenvolvimento com insights sobre tecnologia consciente...")}showComingSoon(e,n){const a=document.createElement("div");a.innerHTML=`
+    `}return c(),e}class j{#e=[];#t=1e3;emit(e,n={}){const a={type:e,data:n,ts:Date.now()};return this.#e.push(a),this.#e.length>this.#t&&this.#e.shift(),a}events(){return[...this.#e]}clear(){this.#e=[]}}const h=new j;let f={agents:[],selectedAgent:null};async function q(){await B(),I(),E("agents")}async function B(){h.emit("app:init",{message:"Inicializando interface"});try{f.agents=await N(),h.emit("agents:loaded",{count:f.agents.length})}catch(t){console.error(t),h.emit("error",{scope:"bootstrap",error:t.message})}}function I(){document.querySelectorAll(".nav-btn").forEach(t=>{t.addEventListener("click",()=>{E(t.dataset.view)})})}function E(t){const e=document.getElementById("view-root");e.innerHTML="",t==="agents"?e.appendChild(A(f)):t==="pipeline"?e.appendChild(H(f.agents)):t==="telemetry"&&e.appendChild(P()),h.emit("ui:view",{view:t})}document.addEventListener("DOMContentLoaded",()=>{q()});class R{constructor(){this.routes={"/":()=>this.showHomepage(),"/os":()=>this.redirectToOS(),"/os/":()=>this.redirectToOS(),"/syntaris":()=>this.showSyntaris(),"/docs":()=>this.showDocs(),"/blog":()=>this.showBlog()},this.init()}init(){this.handleRoute(),window.addEventListener("popstate",()=>this.handleRoute()),document.addEventListener("click",e=>{const n=e.target.closest('a[href^="/"]');if(n&&!n.hasAttribute("target")){e.preventDefault();const a=n.getAttribute("href");this.navigateTo(a)}})}handleRoute(){const e=window.location.pathname,n=this.routes[e];n?n():e.startsWith("/os")?this.redirectToOS():e.startsWith("/docs")?this.showDocs():this.show404()}navigateTo(e){window.history.pushState({},"",e),this.handleRoute()}showHomepage(){console.log("Homepage loaded")}redirectToOS(){window.location.href="/os/index.html"}showSyntaris(){this.showComingSoon("Syntaris Agent","Interface dedicada do Syntaris em desenvolvimento...")}showDocs(){window.location.href="/03-documentacao-base/"}showBlog(){this.showComingSoon("Blog Lichtara","Blog em desenvolvimento com insights sobre tecnologia consciente...")}showComingSoon(e,n){const a=document.createElement("div");a.innerHTML=`
             <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255, 255, 255, 0.95); z-index: 10000; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(8px);">
                 <div style="background: white; padding: 3rem; border-radius: 12px; text-align: center; max-width: 500px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); border: 1px solid #e5e7eb;">
                     <h2 style="color: #1a1a1a; margin-bottom: 1rem; font-size: 1.75rem; font-weight: 500;">${e}</h2>

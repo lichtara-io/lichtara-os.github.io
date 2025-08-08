@@ -1,26 +1,26 @@
 export function renderTelemetryPanel(state) {
   const container = document.createElement('div');
-  container.className = 'p-6 space-y-6';
+  container.className = 'p-6 space-y-6 bg-white';
 
   const header = document.createElement('div');
   header.className = 'flex items-center justify-between';
   header.innerHTML = `
     <div>
-      <h2 class="text-lg font-semibold mb-1">Telemetria</h2>
-      <p class="text-sm text-slate-400">Logs e eventos do sistema em tempo real.</p>
+      <h2 class="text-lg font-semibold mb-1 text-gray-900">Telemetria</h2>
+      <p class="text-sm text-gray-600">Logs e eventos do sistema em tempo real.</p>
     </div>
     <div class="flex gap-2">
       <button 
         id="clear-logs" 
         type="button"
-        class="px-3 py-2 text-sm bg-slate-800 hover:bg-slate-700 rounded border border-slate-700 transition"
+        class="px-3 py-2 text-sm bg-gray-100 hover:bg-gray-200 rounded-lg border border-gray-200 transition text-gray-700"
       >
         Limpar
       </button>
       <button 
         id="toggle-auto-scroll" 
         type="button"
-        class="px-3 py-2 text-sm bg-slate-800 hover:bg-slate-700 rounded border border-slate-700 transition"
+        class="px-3 py-2 text-sm bg-gray-100 hover:bg-gray-200 rounded-lg border border-gray-200 transition text-gray-700"
         data-auto="true"
       >
         Auto-scroll: ON
@@ -32,21 +32,21 @@ export function renderTelemetryPanel(state) {
   const stats = document.createElement('div');
   stats.className = 'grid gap-4 sm:grid-cols-2 lg:grid-cols-4';
   stats.innerHTML = `
-    <div class="bg-slate-900/60 border border-slate-800 rounded p-3">
-      <div class="text-xs text-slate-400 mb-1">Total de Eventos</div>
-      <div id="total-events" class="text-lg font-semibold text-slate-100">0</div>
+    <div class="bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
+      <div class="text-xs text-gray-600 mb-1 font-medium">Total de Eventos</div>
+      <div id="total-events" class="text-lg font-semibold text-gray-900">0</div>
     </div>
-    <div class="bg-slate-900/60 border border-slate-800 rounded p-3">
-      <div class="text-xs text-slate-400 mb-1">Último Evento</div>
-      <div id="last-event" class="text-sm text-slate-300">-</div>
+    <div class="bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
+      <div class="text-xs text-gray-600 mb-1 font-medium">Último Evento</div>
+      <div id="last-event" class="text-sm text-gray-800">-</div>
     </div>
-    <div class="bg-slate-900/60 border border-slate-800 rounded p-3">
-      <div class="text-xs text-slate-400 mb-1">Agentes Ativos</div>
-      <div id="active-agents" class="text-lg font-semibold text-emerald-300">0</div>
+    <div class="bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
+      <div class="text-xs text-gray-600 mb-1 font-medium">Agentes Ativos</div>
+      <div id="active-agents" class="text-lg font-semibold text-green-600">0</div>
     </div>
-    <div class="bg-slate-900/60 border border-slate-800 rounded p-3">
-      <div class="text-xs text-slate-400 mb-1">Taxa de Eventos</div>
-      <div id="event-rate" class="text-sm text-slate-300">0/min</div>
+    <div class="bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
+      <div class="text-xs text-gray-600 mb-1 font-medium">Taxa de Eventos</div>
+      <div id="event-rate" class="text-sm text-gray-800">0/min</div>
     </div>
   `;
   container.appendChild(stats);
@@ -54,13 +54,13 @@ export function renderTelemetryPanel(state) {
   const filters = document.createElement('div');
   filters.className = 'flex flex-wrap gap-2';
   filters.innerHTML = `
-    <span class="text-xs text-slate-400 self-center">Filtros:</span>
+    <span class="text-xs text-gray-600 self-center font-medium">Filtros:</span>
     ${['all', 'info', 'warning', 'error', 'debug'].map(level => `
       <button 
         type="button"
-        class="filter-btn px-3 py-1 text-xs rounded border transition ${level === 'all' ? 
-          'bg-emerald-600 border-emerald-600 text-white' : 
-          'bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700'
+        class="filter-btn px-3 py-1 text-xs rounded-full border transition ${level === 'all' ? 
+          'bg-blue-600 border-blue-600 text-white' : 
+          'bg-white border-gray-300 text-gray-700 hover:bg-gray-50'
         }" 
         data-level="${level}"
       >
@@ -72,7 +72,7 @@ export function renderTelemetryPanel(state) {
 
   const logs = document.createElement('div');
   logs.id = 'telemetry-logs';
-  logs.className = 'bg-slate-950 border border-slate-800 rounded h-96 overflow-y-auto font-mono text-xs';
+  logs.className = 'bg-white border border-gray-200 rounded-lg h-96 overflow-y-auto font-mono text-xs shadow-sm';
   container.appendChild(logs);
 
   // State
@@ -99,9 +99,9 @@ export function renderTelemetryPanel(state) {
     btn.addEventListener('click', () => {
       // Update filter
       filterBtns.forEach(b => {
-        b.className = b.className.replace(/bg-emerald-\w+ border-emerald-\w+ text-white/, 'bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700');
+        b.className = b.className.replace(/bg-blue-\w+ border-blue-\w+ text-white/, 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50');
       });
-      btn.className = btn.className.replace(/bg-slate-\w+ border-slate-\w+ text-slate-\w+ hover:bg-slate-\w+/, 'bg-emerald-600 border-emerald-600 text-white');
+      btn.className = btn.className.replace(/bg-white border-gray-\w+ text-gray-\w+ hover:bg-gray-\w+/, 'bg-blue-600 border-blue-600 text-white');
       
       currentFilter = btn.dataset.level;
       updateDisplay();
@@ -156,26 +156,26 @@ export function renderTelemetryPanel(state) {
 
   function formatLogEntry(event) {
     const levelColors = {
-      info: 'text-blue-400',
-      warning: 'text-yellow-400',
-      error: 'text-red-400',
-      debug: 'text-slate-500'
+      info: 'text-blue-600',
+      warning: 'text-amber-600',
+      error: 'text-red-600',
+      debug: 'text-gray-500'
     };
     
     const timeStr = new Date(event.timestamp).toLocaleTimeString();
-    const levelColor = levelColors[event.level] || 'text-slate-300';
+    const levelColor = levelColors[event.level] || 'text-gray-800';
     
     return `
-      <div class="p-2 border-b border-slate-800/50 hover:bg-slate-900/30">
+      <div class="p-3 border-b border-gray-100 hover:bg-gray-50">
         <div class="flex items-center gap-3 mb-1">
-          <span class="text-slate-500">${timeStr}</span>
-          <span class="${levelColor} uppercase font-medium">[${event.level}]</span>
-          ${event.source ? `<span class="text-slate-400">${event.source}</span>` : ''}
+          <span class="text-gray-500 text-[11px]">${timeStr}</span>
+          <span class="${levelColor} uppercase font-medium text-[11px]">[${event.level}]</span>
+          ${event.source ? `<span class="text-gray-600 text-[11px]">${event.source}</span>` : ''}
         </div>
-        <div class="text-slate-200 pl-4">${event.message}</div>
+        <div class="text-gray-900 pl-4 text-xs">${event.message}</div>
         ${event.data ? `
           <div class="pl-4 mt-1">
-            <pre class="text-slate-400 text-[11px]">${JSON.stringify(event.data, null, 2)}</pre>
+            <pre class="text-gray-600 text-[10px] bg-gray-50 p-2 rounded border overflow-x-auto">${JSON.stringify(event.data, null, 2)}</pre>
           </div>
         ` : ''}
       </div>

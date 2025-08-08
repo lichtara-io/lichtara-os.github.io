@@ -193,21 +193,27 @@ class Syntaris {
     }
     
     async generateResponse(userMessage) {
-        if (!this.apiKey) {
+        if (!this.apiKey || !SYNTARIS_CONFIG?.apiKey) {
             return this.generateOfflineResponse(userMessage);
         }
         
-        // Implementação com API real
-        const context = this.buildContext(userMessage);
-        const response = await this.callAPI(context);
-        
-        this.conversationHistory.push({
-            user: userMessage,
-            syntaris: response,
-            timestamp: new Date()
-        });
-        
-        return response;
+        try {
+            // Implementação com API OpenAI
+            const context = this.buildContext(userMessage);
+            const response = await this.callOpenAI(context);
+            
+            this.conversationHistory.push({
+                user: userMessage,
+                syntaris: response,
+                timestamp: new Date()
+            });
+            
+            return response;
+        } catch (error) {
+            console.error('Syntaris API Error:', error);
+            // Fallback para modo offline se API falhar
+            return this.generateOfflineResponse(userMessage);
+        }
     }
     
     generateOfflineResponse(userMessage) {

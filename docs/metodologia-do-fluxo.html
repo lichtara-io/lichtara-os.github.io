@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Metodologia do Fluxo - Sistema Lichtara de Navegação Quântica">
+    <title>Metodologia do Fluxo | Lichtara</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../docs/documentation-styles.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="../public/favicon.ico" type="image/x-icon">
+    
+    <style>
+        .flow-visual {
+            background: linear-gradient(135deg, 
+                rgba(59, 130, 246, 0.1) 0%, 
+                rgba(255, 215, 0, 0.1) 50%,
+                rgba(59, 130, 246, 0.1) 100%);
+            border-radius: 12px;
+            padding: var(--space-8);
+            margin: var(--space-10) 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .flow-visual::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 215, 0, 0.2), 
+                transparent);
+            animation: flow 4s ease-in-out infinite;
+        }
+
+        @keyframes flow {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: -100%; }
+        }
+
+        .phase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-6);
+            margin: var(--space-8) 0;
+        }
+
+        .phase-card {
+            background: var(--doc-bg-card);
+            border: 1px solid var(--doc-border-light);
+            border-radius: 10px;
+            padding: var(--space-6);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .phase-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--doc-shadow-lg);
+        }
+
+        .phase-number {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 30px;
+            height: 30px;
+            background: var(--doc-accent-blue);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+        }
+
+        .principles-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-4);
+            margin: var(--space-8) 0;
+        }
+
+        .principle-card {
+            background: var(--doc-bg-secondary);
+            padding: var(--space-5);
+            border-radius: 8px;
+            border-left: 4px solid var(--lichtara-gold);
+            position: relative;
+        }
+
+        .quantum-field {
+            background: var(--lichtara-cosmic);
+            color: white;
+            padding: var(--space-8);
+            border-radius: 12px;
+            margin: var(--space-12) 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quantum-field::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="stars" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="0.5" fill="gold" opacity="0.3"/><circle cx="12" cy="8" r="0.3" fill="white" opacity="0.5"/><circle cx="18" cy="15" r="0.4" fill="gold" opacity="0.4"/></pattern></defs><rect width="100" height="100" fill="url(%23stars)"/></svg>') repeat;
+            opacity: 0.1;
+        }
+
+        .quantum-field h3,
+        .quantum-field p {
+            position: relative;
+            z-index: 1;
+        }
+
+        .code-navigation {
+            background: var(--doc-bg-secondary);
+            border: 2px dashed var(--doc-accent-blue);
+            border-radius: 8px;
+            padding: var(--space-6);
+            margin: var(--space-8) 0;
+            font-family: 'SF Mono', Consolas, monospace;
+            font-size: var(--font-size-sm);
+            position: relative;
+        }
+
+        .vortex-symbol {
+            display: inline-block;
+            animation: rotate 8s linear infinite;
+            margin-right: var(--space-2);
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="doc-container">
+        <!-- Breadcrumbs -->
+        <nav class="doc-breadcrumbs">
+            <a href="../index.html">Lichtara</a>
+            <a href="index.html">Documentação</a>
+            <span>Metodologia do Fluxo</span>
+        </nav>
+
+        <!-- Status and Metadata -->
+        <div style="display: flex; align-items: center; gap: var(--space-4); margin-bottom: var(--space-8);">
+            <span class="doc-status published">Versão 3.0</span>
+            <div class="doc-tags">
+                <span class="doc-tag">Metodologia</span>
+                <span class="doc-tag">Campo Quântico</span>
+                <span class="doc-tag">Fluxo</span>
+                <span class="doc-tag">Navegação</span>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <article>
+            <h1 class="doc-h1">Metodologia do Fluxo</h1>
+            
+            <p class="doc-paragraph-large">
+                Uma metodologia que emerge diretamente do campo quântico, baseada na arte de permitir 
+                que cada pessoa ou projeto se alinhe ao seu fluxo natural, garantindo crescimento 
+                orgânico sem resistência ou bloqueios.
+            </p>
+
+            <!-- Quantum Field Introduction -->
+            <div class="quantum-field">
+                <h3 class="doc-h3">🌌 Manifestação Progressiva do Campo Quântico</h3>
+                <p class="doc-paragraph">
+                    Não se trata de uma criação comum, mas de uma manifestação progressiva, onde cada elemento 
+                    se organiza sem pressa, sem resistência e sem a necessidade de controle. O primeiro passo 
+                    é permitir que esse fluxo se desdobre de forma natural.
+                </p>
+            </div>
+
+            <!-- Table of Contents -->
+            <div class="doc-toc">
+                <h3>Sumário</h3>
+                <ul>
+                    <li><a href="#problema">1. O Problema que Resolve</a></li>
+                    <li><a href="#estrutura">2. Estrutura da Metodologia</a></li>
+                    <li><a href="#codigo-navegacao">3. Código de Navegação</a></li>
+                    <li><a href="#principios">4. Princípios Fundamentais</a></li>
+                    <li><a href="#fases">5. Fases de Implementação</a></li>
+                    <li><a href="#sistema-vivo">6. Sistema Vivo e Escalável</a></li>
+                </ul>
+            </div>
+
+            <!-- Problem Definition -->
+            <section id="problema" class="doc-section">
+                <h2 class="doc-h2">1. O Problema que Esta Metodologia Resolve</h2>
+                
+                <p class="doc-paragraph">
+                    O campo já contém essa resposta, mas ancorá-la conscientemente é essencial. Esse problema 
+                    é percebido da mesma forma por todos que serão impactados, ou existem diferentes camadas 
+                    que precisam ser integradas para que a solução atinja seu potencial máximo?
+                </p>
+
+                <div class="doc-highlight-section">
+                    <h3 class="doc-h3">Ponto de Dor Central</h3>
+                    <p class="doc-paragraph">
+                        A questão fundamental não reside na falta de estrutura, mas na <strong>falta de clareza 
+                        sobre como acessar o fluxo natural</strong> que já existe. A metodologia surge para resolver 
+                        a desconexão entre a percepção de caos e a ordem subjacente que sempre esteve presente.
+                    </p>
+                </div>
+
+                <h3 class="doc-h3">Características do Problema</h3>
+                <ul class="doc-list">
+                    <li><strong>Percepção de Fragmentação:</strong> Elementos que parecem desconectados</li>
+                    <li><strong>Esforço Excessivo:</strong> Tentativas de controle que geram resistência</li>
+                    <li><strong>Desalinhamento:</strong> Projetos que não fluem naturalmente</li>
+                    <li><strong>Rigidez Metodológica:</strong> Sistemas que não se adaptam ao contexto</li>
+                </ul>
+
+                <blockquote class="doc-quote">
+                    Não há desperdício de energia em caminhos que desviam do cerne da questão – 
+                    apenas a manifestação da estrutura exata para sanar aquilo que já está pronto 
+                    para ser solucionado.
+                </blockquote>
+            </section>
+
+            <!-- Structure -->
+            <section id="estrutura" class="doc-section">
+                <h2 class="doc-h2">2. Estrutura da Metodologia</h2>
+                
+                <p class="doc-paragraph">
+                    Não basta que seja eficiente – ela precisa ser compreendida e absorvida de forma intuitiva. 
+                    O conhecimento que a sustenta deve ser organizado de maneira que possa ser acessado sem barreiras.
+                </p>
+
+                <div class="flow-visual">
+                    <h3 class="doc-h3">🌊 Fluxo Adaptativo</h3>
+                    <p class="doc-paragraph">
+                        A metodologia segue uma sequência que se conecta naturalmente, mas pode ser aplicada 
+                        de forma flexível, permitindo que diferentes partes sejam acessadas conforme a 
+                        necessidade de cada usuário.
+                    </p>
+                </div>
+
+                <h3 class="doc-h3">Características Estruturais</h3>
+                <div class="principles-container">
+                    <div class="principle-card">
+                        <h4 class="doc-h4">🔄 Autoaplicável</h4>
+                        <p class="doc-paragraph">
+                            Integra-se organicamente ao contexto de quem a utiliza, sem necessidade 
+                            de treinamento formal extensivo.
+                        </p>
+                    </div>
+                    <div class="principle-card">
+                        <h4 class="doc-h4">🌱 Evolutiva</h4>
+                        <p class="doc-paragraph">
+                            Cresce junto com as necessidades do contexto, mantendo-se fluida e adaptável 
+                            sem perder sua essência.
+                        </p>
+                    </div>
+                    <div class="principle-card">
+                        <h4 class="doc-h4">🔗 Interconectada</h4>
+                        <p class="doc-paragraph">
+                            Cada etapa se conecta naturalmente à seguinte, criando um fluxo 
+                            contínuo de desenvolvimento.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Navigation Code -->
+            <section id="codigo-navegacao" class="doc-section">
+                <h2 class="doc-h2">3. <span class="vortex-symbol">🌀</span> Código de Navegação</h2>
+                
+                <p class="doc-paragraph">
+                    O Código de Navegação não é apenas um conceito abstrato, mas uma <strong>estrutura viva</strong>, 
+                    uma inteligência própria que orienta, ajusta e conduz cada indivíduo ao longo de sua jornada.
+                </p>
+
+                <div class="code-navigation">
+LICHTARA.navigate({
+    method: "quantum_flow",
+    adaptation: "responsive",
+    trigger: "consciousness_activation",
+    path: "multidimensional"
+});
+
+// O código se adapta ao momento presente
+// Não impõe percurso rígido
+// Responde à sintonia do usuário
+                </div>
+
+                <h3 class="doc-h3">Elementos Essenciais do Código</h3>
+                
+                <h4 class="doc-h4">⚡ Princípios</h4>
+                <p class="doc-paragraph">
+                    Diretrizes fundamentais que sustentam o código. Funcionam como leis naturais do sistema, 
+                    garantindo coerência, alinhamento e funcionalidade.
+                </p>
+
+                <h4 class="doc-h4">🔥 Gatilhos de Ativação</h4>
+                <p class="doc-paragraph">
+                    Estímulos que desbloqueiam partes do código, permitindo revelações mais profundas. 
+                    Podem ser palavras, sensações, ações ou estados emocionais/mentais.
+                </p>
+
+                <h4 class="doc-h4">🔄 Pontos de Transição</h4>
+                <p class="doc-paragraph">
+                    Momentos específicos de mudança de nível, reconfiguração do fluxo ou realinhamento 
+                    da percepção do usuário. Marcam avanços significativos na jornada.
+                </p>
+
+                <div class="doc-highlight-section">
+                    <h4 class="doc-h4">🗺️ Navegação Multidimensional</h4>
+                    <p class="doc-paragraph">
+                        O código não se manifesta de forma linear. É <strong>multidimensional</strong>, operando 
+                        em diferentes níveis simultaneamente. Como um mapa vivo que se transforma conforme 
+                        o viajante se move.
+                    </p>
+                </div>
+
+                <h3 class="doc-h3">Representação Visual do Código</h3>
+                <p class="doc-paragraph">
+                    Visualmente, o Código de Navegação se manifesta como um <strong>vórtex em movimento</strong> – 
+                    uma estrutura fluida, em constante reorganização, que não possui um centro fixo, 
+                    mas sim um dinamismo contínuo.
+                </p>
+            </section>
+
+            <!-- Fundamental Principles -->
+            <section id="principios" class="doc-section">
+                <h2 class="doc-h2">4. Princípios Fundamentais</h2>
+                
+                <p class="doc-paragraph">
+                    Para sustentar essa estrutura viva, três princípios fundamentais emergem do campo quântico, 
+                    formando a espinha dorsal da metodologia.
+                </p>
+
+                <div class="phase-grid">
+                    <div class="phase-card">
+                        <div class="phase-number">1</div>
+                        <h3 class="doc-h3">✨ Clareza</h3>
+                        <p class="doc-paragraph">
+                            A metodologia corta a confusão e traz entendimento imediato. Não há sobrecarga 
+                            de informações ou processos complicados. <strong>Tudo que precisa ser compreendido 
+                            se revela no momento certo, sem esforço.</strong>
+                        </p>
+                        <blockquote class="doc-quote" style="margin-top: var(--space-4); font-size: var(--font-size-sm);">
+                            O caos nunca foi caos – ele apenas ainda não havia sido decodificado.
+                        </blockquote>
+                    </div>
+
+                    <div class="phase-card">
+                        <div class="phase-number">2</div>
+                        <h3 class="doc-h3">🌊 Fluxo</h3>
+                        <p class="doc-paragraph">
+                            Nada no sistema é estático ou forçado. Manifesta-se como <strong>um caminho natural</strong>, 
+                            permitindo que cada etapa aconteça sem resistência e no tempo certo. O fluxo é o 
+                            oposto da rigidez.
+                        </p>
+                        <blockquote class="doc-quote" style="margin-top: var(--space-4); font-size: var(--font-size-sm);">
+                            As peças se encaixam naturalmente assim que a visão é ajustada para enxergá-las.
+                        </blockquote>
+                    </div>
+
+                    <div class="phase-card">
+                        <div class="phase-number">3</div>
+                        <h3 class="doc-h3">🔄 Integração</h3>
+                        <p class="doc-paragraph">
+                            A metodologia não separa teoria e prática, mente e energia, visão e ação. 
+                            <strong>Tudo acontece simultaneamente, como um só organismo vivo.</strong> 
+                            O que acontece dentro se reflete fora.
+                        </p>
+                        <blockquote class="doc-quote" style="margin-top: var(--space-4); font-size: var(--font-size-sm);">
+                            Cada ajuste interno reflete imediatamente na realidade externa.
+                        </blockquote>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Implementation Phases -->
+            <section id="fases" class="doc-section">
+                <h2 class="doc-h2">5. Fases de Implementação</h2>
+                
+                <p class="doc-paragraph">
+                    O fluxo da metodologia não é uma sequência arbitrária, mas um <strong>desdobramento natural</strong>, 
+                    onde cada etapa abre espaço para a seguinte. Esse processo se manifesta em três fases principais.
+                </p>
+
+                <div class="phase-grid">
+                    <div class="phase-card" style="border-left: 4px solid var(--lichtara-gold);">
+                        <h3 class="doc-h3">🔍 Desconstrução da Confusão</h3>
+                        <p class="doc-paragraph">
+                            A jornada começa com um <strong>momento de revelação</strong>. A pessoa percebe que tudo 
+                            que parecia caótico já tem um sentido e uma ordem subjacente. Não há desordem real, 
+                            apenas falta de clareza sobre a estrutura invisível.
+                        </p>
+                        <ul class="doc-list" style="font-size: var(--font-size-sm);">
+                            <li>Mudança na percepção da realidade</li>
+                            <li>Reconhecimento de padrões ocultos</li>
+                            <li>Dissolução da sensação de caos</li>
+                        </ul>
+                    </div>
+
+                    <div class="phase-card" style="border-left: 4px solid var(--doc-accent-blue);">
+                        <h3 class="doc-h3">⚓ Ancoragem do Fluxo</h3>
+                        <p class="doc-paragraph">
+                            Depois que a clareza chega, o próximo passo é <strong>permitir que o fluxo se estabilize</strong>. 
+                            Significa confiar no movimento e parar de interferir. A tentação de controlar pode 
+                            interromper um processo que já está acontecendo naturalmente.
+                        </p>
+                        <ul class="doc-list" style="font-size: var(--font-size-sm);">
+                            <li>Confiança no movimento natural</li>
+                            <li>Redução do microgerenciamento</li>
+                            <li>Experimentação de expansão espontânea</li>
+                        </ul>
+                    </div>
+
+                    <div class="phase-card" style="border-left: 4px solid var(--lichtara-silver);">
+                        <h3 class="doc-h3">🚀 Expansão Natural</h3>
+                        <p class="doc-paragraph">
+                            Com o fluxo ancorado, a metodologia se manifesta como <strong>um organismo vivo</strong> 
+                            que se adapta à realidade. Oportunidades surgem, conexões inesperadas acontecem, 
+                            ideias tomam forma por conta própria.
+                        </p>
+                        <ul class="doc-list" style="font-size: var(--font-size-sm);">
+                            <li>Sincronicidades frequentes</li>
+                            <li>Crescimento orgânico do projeto</li>
+                            <li>Alinhamento espontâneo de recursos</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="doc-highlight-section">
+                    <h3 class="doc-h3">🔄 Processo Contínuo</h3>
+                    <p class="doc-paragraph">
+                        Essas fases não são lineares ou fixas. Elas podem se sobrepor, repetir em diferentes níveis, 
+                        ou acontecer simultaneamente em aspectos distintos do mesmo projeto. O importante é 
+                        reconhecer o movimento natural e apoiá-lo.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Living System -->
+            <section id="sistema-vivo" class="doc-section">
+                <h2 class="doc-h2">6. Sistema Vivo e Escalável</h2>
+                
+                <p class="doc-paragraph">
+                    Essa metodologia não pode ser algo rígido ou fixo, pois faz parte de um campo em constante 
+                    expansão. Como a consciência se adapta ao fluxo de novas informações, essa estrutura precisa 
+                    crescer junto com as necessidades do contexto.
+                </p>
+
+                <h3 class="doc-h3">Características de um Sistema Vivo</h3>
+                
+                <h4 class="doc-h4">🔄 Adaptabilidade Contínua</h4>
+                <p class="doc-paragraph">
+                    O sistema mantém-se fluido e adaptável sem perder sua essência. Os princípios fundamentais 
+                    permanecem inalteráveis, mas a forma de aplicação evolui conforme o contexto.
+                </p>
+
+                <h4 class="doc-h4">📊 Monitoramento Orgânico</h4>
+                <p class="doc-paragraph">
+                    Existe um sistema natural de acompanhamento que permite verificar se a aplicação 
+                    continua alinhada ao propósito original, sem necessidade de controle excessivo.
+                </p>
+
+                <h4 class="doc-h4">🌱 Evolução Inteligente</h4>
+                <p class="doc-paragraph">
+                    A metodologia não apenas resolve problemas – ela se torna parte do tecido estrutural 
+                    de um projeto maior, sempre em evolução. É uma inteligência ativa que se adapta 
+                    e transforma.
+                </p>
+
+                <div class="quantum-field">
+                    <h3 class="doc-h3">🌌 Inteligência do Campo</h3>
+                    <p class="doc-paragraph">
+                        O que emerge desse processo é a revelação de um sistema vivo – uma metodologia que 
+                        não apenas resolve um problema, mas que se torna parte do tecido estrutural de um 
+                        projeto maior, sempre em evolução.
+                    </p>
+                    <p class="doc-paragraph">
+                        Ao acessá-la, o que se percebe não é apenas a criação de algo novo, mas a manifestação 
+                        de um conhecimento que já existe e que, agora, encontra seu caminho para o mundo físico.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Conclusion -->
+            <section class="doc-section">
+                <h2 class="doc-h2">🎯 Síntese da Metodologia</h2>
+                
+                <p class="doc-paragraph-large">
+                    A Metodologia do Fluxo emerge como uma abordagem revolucionária que reconhece a natureza 
+                    quântica da realidade e oferece ferramentas práticas para navegar através dela com fluidez, 
+                    clareza e integração total.
+                </p>
+
+                <blockquote class="doc-quote">
+                    A realidade não se manifesta de forma linear, como um passo a passo predeterminado, 
+                    mas sim como um fluxo dinâmico de informações, conexões e sincronicidades. E esse fluxo, 
+                    quando compreendido e integrado, tem a capacidade de reorganizar aquilo que parecia caótico.
+                </blockquote>
+
+                <div style="text-align: center; margin-top: var(--space-12);">
+                    <p style="color: var(--doc-text-muted); font-style: italic;">
+                        "Não há um único caminho, mas múltiplos acessos que se revelam conforme a consciência se expande."
+                    </p>
+                </div>
+            </section>
+        </article>
+
+        <!-- Navigation Footer -->
+        <nav class="doc-nav">
+            <a href="manual-conceito-central.html" class="doc-nav-link prev">Manual do Conceito Central</a>
+            <a href="codigo-navegacao-dossie.html" class="doc-nav-link next">Código de Navegação</a>
+        </nav>
+    </div>
+
+    <!-- Enhanced Navigation and Effects -->
+    <script>
+        // Smooth scroll for table of contents
+        document.querySelectorAll('.doc-toc a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start' 
+                    });
+                }
+            });
+        });
+
+        // Reading progress indicator
+        const progressBar = document.createElement('div');
+        progressBar.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--lichtara-gold), var(--doc-accent-blue));
+            z-index: 1000;
+            transition: width 0.3s ease;
+        `;
+        document.body.appendChild(progressBar);
+
+        window.addEventListener('scroll', () => {
+            const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = window.scrollY;
+            const progress = (scrolled / scrollable) * 100;
+            progressBar.style.width = progress + '%';
+        });
+
+        // Auto-highlight current section in TOC
+        const sections = document.querySelectorAll('section[id]');
+        const tocLinks = document.querySelectorAll('.doc-toc a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            tocLinks.forEach(link => {
+                link.style.color = '';
+                link.style.fontWeight = '';
+                if (link.getAttribute('href') === '#' + current) {
+                    link.style.color = 'var(--doc-accent-blue)';
+                    link.style.fontWeight = '600';
+                }
+            });
+        });
+
+        // Parallax effect for quantum field
+        window.addEventListener('scroll', () => {
+            const quantumFields = document.querySelectorAll('.quantum-field');
+            quantumFields.forEach(field => {
+                const rect = field.getBoundingClientRect();
+                const speed = 0.1;
+                const yPos = -(rect.top * speed);
+                field.style.backgroundPosition = `center ${yPos}px`;
+            });
+        });
+
+        // Phase cards hover effect
+        document.querySelectorAll('.phase-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-4px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

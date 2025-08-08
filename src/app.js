@@ -1,54 +1,96 @@
-import { loadAgents } from './services/agentsService.js';
-import { renderAgentsGrid } from './components/AgentsGrid.js';
-import { renderPipelineSimulator } from './components/PipelineSimulator.js';
-import { renderTelemetryPanel } from './components/TelemetryPanel.js';
-import { telemetry } from './core/telemetry.js';
+import { AgentsGrid, initializeAgentsGrid } from './components/AgentsGrid.js';
+import { PipelineSimulator, initializePipelineSimulator } from './components/PipelineSimulator.js';
+import { TelemetryPanel, initializeTelemetryPanel } from './components/TelemetryPanel.js';
+import { TelemetryService } from './services/TelemetryService.js';
 
-let state = {
-  agents: [],
-  selectedAgent: null
-};
+// Inicializar timestamp global para uptime
+window.startTime = new Date();
 
-export async function initApp() {
-  await bootstrap();
-  bindNav();
+// Estado global da aplicação
+let currentView = 'agents';
+
+export function initApp() {
+  TelemetryService.track('app.init');
+  initializeNavigation();
   showView('agents');
 }
 
-async function bootstrap() {
-  telemetry.emit('app:init', { message: 'Inicializando interface' });
-  try {
-    state.agents = await loadAgents();
-    telemetry.emit('agents:loaded', { count: state.agents.length });
-  } catch (e) {
-    console.error(e);
-    telemetry.emit('error', { scope: 'bootstrap', error: e.message });
-  }
-}
-
-function bindNav() {
-  document.querySelectorAll('.nav-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      // Remove active state from all buttons  
-      document.querySelectorAll('.nav-btn').forEach(b => {
-        b.className = 'nav-btn text-gray-600 hover:text-blue-600';
-      });
-      // Add active state to clicked button
-      btn.className = 'nav-btn text-blue-600 font-medium border-b-2 border-blue-600 pb-1';
-      showView(btn.dataset.view);
+function initializeNavigation() {
+  const navButtons = document.querySelectorAll('[data-view]');
+  
+  navButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+      const view = e.target.dataset.view;
+      showView(view);
+      
+      // Atualizar estado ativo dos botões
+      navButtons.forEach(btn => btn.classList.remove('active', 'is-active'));
+      e.target.classList.add('active', 'is-active');
+      
+      TelemetryService.track('navigation.view_change', { view });
     });
   });
+  
+  // Marcar primeira view como ativa
+  const firstButton = document.querySelector('[data-view="agents"]');
+  if (firstButton) {
+    firstButton.classList.add('active', 'is-active');
+  }
 }
 
-function showView(view) {
-  const root = document.getElementById('view-root');
-  root.innerHTML = '';
-  if (view === 'agents') {
-    root.appendChild(renderAgentsGrid(state));
-  } else if (view === 'pipeline') {
-    root.appendChild(renderPipelineSimulator(state));
-  } else if (view === 'telemetry') {
-    root.appendChild(renderTelemetryPanel(state));
+async function showView(viewName) {
+  const viewRoot = document.getElementById('view-root');
+  if (!viewRoot) return;
+  
+  currentView = viewName;
+  
+  // Limpar conteúdo anterior
+  viewRoot.innerHTML = '';
+  
+  try {
+    switch (viewName) {
+      case 'agents':
+        viewRoot.innerHTML = AgentsGrid();
+        await initializeAgentsGrid();
+        break;
+        
+      case 'pipeline':
+        viewRoot.innerHTML = PipelineSimulator();
+        await initializePipelineSimulator();
+        break;
+        
+      case 'telemetry':
+        viewRoot.innerHTML = TelemetryPanel();
+        initializeTelemetryPanel();
+        break;
+        
+      default:
+        viewRoot.innerHTML = `
+          <div style="padding: 2rem; text-align: center; color: var(--text-secondary);">
+            <h2>View não encontrada</h2>
+            <p>A view "${viewName}" não está disponível.</p>
+          </div>
+        `;
+    }
+    
+    TelemetryService.track('view.loaded', { view: viewName });
+  } catch (error) {
+    console.error('Erro ao carregar view:', error);
+    TelemetryService.track('view.error', { view: viewName, error: error.message });
+    
+    viewRoot.innerHTML = `
+      <div style="padding: 2rem; text-align: center; color: var(--text-secondary);">
+        <h2>❌ Erro ao carregar</h2>
+        <p>Não foi possível carregar a view "${viewName}"</p>
+        <p style="font-size: 0.8rem; margin-top: 1rem; color: var(--text-muted);">${error.message}</p>
+      </div>
+    `;
   }
-  telemetry.emit('ui:view', { view });
 }
+
+// Exportar funcionalidades globais
+window.LichtaraApp = {
+  showView,
+  getCurrentView: () => currentView,
+  TelemetryService
+};

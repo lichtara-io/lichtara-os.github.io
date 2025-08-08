@@ -45,13 +45,11 @@
     "build": "vite build",
     "preview": "vite preview",
     "serve": "http-server . -p 8080",
-    "deploy": "gh-pages -d .",
     "syntaris:dev": "echo 'Syntaris Agent: Ready for development!'",
     "syntaris:config": "echo 'Configure API key in src/syntaris-config.js'"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.16",
-    "gh-pages": "^6.0.0",
     "http-server": "^14.1.1",
     "postcss": "^8.4.31",
     "tailwindcss": "^3.3.0",

@@ -183,26 +183,99 @@ function createAgentCard(agent) {
   `;
 }
 
-function getStatusClass(status) {
+function createStatusBadge(status) {
   const statusMap = {
-    'active': 'status-active',
-    'ready': 'status-ready', 
-    'processing': 'status-processing',
-    'inactive': 'status-inactive',
-    'error': 'status-error'
+    'active': { class: 'badge-active', text: 'Active' },
+    'ready': { class: 'badge-ready', text: 'Ready' },
+    'processing': { class: 'badge-processing', text: 'Processing' },
+    'planned': { class: 'badge-planned', text: 'Planned' },
+    'concept': { class: 'badge-concept', text: 'Concept' },
+    'inactive': { class: 'badge-inactive', text: 'Inactive' }
   };
-  return statusMap[status?.toLowerCase()] || 'status-unknown';
+  
+  const statusInfo = statusMap[status?.toLowerCase()] || { class: 'badge-unknown', text: status || 'Unknown' };
+  return `<span class="badge ${statusInfo.class}">${statusInfo.text}</span>`;
 }
 
-function getStatusIcon(status) {
-  const iconMap = {
-    'active': '🟢',
-    'ready': '🟡',
-    'processing': '🔵',
-    'inactive': '⚪',
-    'error': '🔴'
-  };
-  return iconMap[status?.toLowerCase()] || '❓';
+function showAgentDetails(agent) {
+  const detailsPanel = document.getElementById('agent-details-panel');
+  if (!detailsPanel) return;
+  
+  detailsPanel.innerHTML = `
+    <div class="agent-details-card card" style="padding: 1.5rem;">
+      <div class="agent-details-header">
+        <div class="agent-title-row">
+          <h3 style="font-size: 1.1rem; font-weight: 600; margin: 0;">${agent.name}</h3>
+          ${createStatusBadge(agent.status)}
+        </div>
+        <p style="color: var(--text-secondary); margin: 0.5rem 0 0; line-height: 1.5;">${agent.description}</p>
+      </div>
+      
+      <div class="agent-details-grid" style="margin-top: 1.5rem;">
+        <div class="details-section">
+          <h4 style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 0 0 0.75rem;">Informações</h4>
+          <div class="info-list">
+            <div class="info-row">
+              <span class="info-label">ID:</span>
+              <code style="font-size: 0.8rem; padding: 0.1rem 0.3rem; background: var(--bg-code); border-radius: 3px;">${agent.id}</code>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Tipo:</span>
+              <span>${agent.type || agent.role || 'Standard'}</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Versão:</span>
+              <span>${agent.version || agent.maturity || 'N/A'}</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Visibilidade:</span>
+              <span>${agent.public ? 'Público' : 'Interno'}</span>
+            </div>
+            ${agent.lastActivity ? `
+              <div class="info-row">
+                <span class="info-label">Última Atividade:</span>
+                <span>${formatLastActivity(agent.lastActivity)}</span>
+              </div>
+            ` : ''}
+          </div>
+        </div>
+        
+        ${agent.capabilities && agent.capabilities.length > 0 ? `
+          <div class="details-section">
+            <h4 style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 0 0 0.75rem;">Capacidades</h4>
+            <div class="capabilities-grid">
+              ${agent.capabilities.map(cap => 
+                `<span class="capability-pill">${cap}</span>`
+              ).join('')}
+            </div>
+          </div>
+        ` : ''}
+        
+        ${agent.metrics ? `
+          <div class="details-section">
+            <h4 style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 0 0 0.75rem;">Performance</h4>
+            <div class="metrics-row">
+              <div class="metric-item">
+                <span class="metric-value">${agent.metrics.uptime || '0%'}</span>
+                <span class="metric-label">Uptime</span>
+              </div>
+              <div class="metric-item">
+                <span class="metric-value">${agent.metrics.processedTasks || '0'}</span>
+                <span class="metric-label">Tarefas</span>
+              </div>
+              <div class="metric-item">
+                <span class="metric-value">${agent.metrics.avgResponseTime || '0ms'}</span>
+                <span class="metric-label">Resposta</span>
+              </div>
+            </div>
+          </div>
+        ` : ''}
+      </div>
+    </div>
+  `;
+  
+  // Smooth scroll to details
+  detailsPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function formatLastActivity(timestamp) {

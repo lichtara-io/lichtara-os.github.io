@@ -11,11 +11,12 @@ class SyntarisChat {
         this.conversationHistory = JSON.parse(localStorage.getItem('syntaris-history') || '[]');
         this.isLoading = false;
         this.init();
-    }    async init() {
-        await this.loadKnowledgeBase();
-        await this.checkBackendStatus();
-        this.createInterface();
-        this.bindEvents();
+    }    init() {
+        this.createChatInterface();
+        this.setupEventListeners();
+        this.applyTheme();
+        this.loadConversationHistory();
+        this.addSuggestedQuestions();
     }
     
     async checkBackendStatus() {

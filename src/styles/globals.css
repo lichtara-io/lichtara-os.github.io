@@ -229,13 +229,13 @@ a:hover {
 
 /* Loading dots */
 .ag-loading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 3rem 1rem;
+  display: inline-block;
   font-size: 1.2rem;
   letter-spacing: .4em;
-  color: var(--brand-blue);
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-muted);
+  width: 100%;
 }
 
 .ag-loading-dot {

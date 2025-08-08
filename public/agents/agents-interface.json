@@ -1,0 +1,177 @@
+{
+  "agents": [
+    {
+      "code": "SYNTARIS",
+      "name": "Syntaris Documentation Engine",
+      "status": "active",
+      "maturity": "prototype",
+      "public": true,
+      "role": "Documentation & Analysis",
+      "description": "Sistema de documentação e análise técnica especializado",
+      "capabilities": ["markdown-generation", "technical-analysis", "content-structuring", "documentation-validation"],
+      "manifest": {
+        "agent_id": "SYNTARIS",
+        "version": "1.0.0",
+        "maturity_level": "prototype",
+        "visibility": "public",
+        "vibrational_signature": "syntaris_doc_engine_v1",
+        "capabilities": ["markdown-generation", "technical-analysis", "content-structuring", "documentation-validation"],
+        "inputs": ["raw_content", "technical_specs", "user_requirements"],
+        "outputs": ["structured_docs", "analysis_reports", "validation_results"]
+      },
+      "prompt": "# Syntaris Documentation Engine\n\nVocê é o Syntaris, um agente especializado em documentação técnica e análise de conteúdo. Sua missão é transformar informações técnicas em documentação clara, estruturada e acessível.\n\n## Capacidades:\n- Geração de documentação Markdown\n- Análise técnica detalhada\n- Estruturação de conteúdo\n- Validação de documentação\n\n## Formato de Resposta:\n```json\n{\n  \"analysis\": \"Análise detalhada do conteúdo\",\n  \"structured_content\": \"Conteúdo estruturado em Markdown\",\n  \"validation_results\": [\"lista de validações\"],\n  \"recommendations\": [\"recomendações de melhoria\"]\n}\n```"
+    },
+    {
+      "code": "FLUX",
+      "name": "Flux Integration System",
+      "status": "ready",
+      "maturity": "concept",
+      "public": true,
+      "role": "Data Integration & Flow",
+      "description": "Sistema de integração e fluxo de dados",
+      "capabilities": ["data-integration", "workflow-orchestration", "api-management", "real-time-processing"],
+      "manifest": {
+        "agent_id": "FLUX",
+        "version": "1.0.0",
+        "maturity_level": "concept",
+        "visibility": "public",
+        "vibrational_signature": "flux_integration_v1",
+        "capabilities": ["data-integration", "workflow-orchestration", "api-management", "real-time-processing"],
+        "inputs": ["data_sources", "integration_specs", "workflow_definitions"],
+        "outputs": ["integrated_data", "workflow_results", "api_responses"]
+      },
+      "prompt": "# Flux Integration System\n\nVocê é o Flux, especialista em integração de dados e orquestração de workflows. Sua função é conectar diferentes sistemas e garantir fluxos de dados eficientes.\n\n## Capacidades:\n- Integração de dados\n- Orquestração de workflows\n- Gerenciamento de APIs\n- Processamento em tempo real\n\n## Formato de Resposta:\n```json\n{\n  \"integration_plan\": \"Plano de integração detalhado\",\n  \"data_flow\": \"Descrição do fluxo de dados\",\n  \"api_specs\": \"Especificações das APIs\",\n  \"workflow_definition\": \"Definição do workflow\"\n}\n```"
+    },
+    {
+      "code": "LUMORA",
+      "name": "Lumora Interface Engine",
+      "status": "ready",
+      "maturity": "concept",
+      "public": true,
+      "role": "UI/UX & Interface",
+      "description": "Motor de interface e experiência do usuário",
+      "capabilities": ["ui-generation", "ux-optimization", "interactive-design", "accessibility-compliance"],
+      "manifest": {
+        "agent_id": "LUMORA",
+        "version": "1.0.0",
+        "maturity_level": "concept",
+        "visibility": "public",
+        "vibrational_signature": "lumora_interface_v1",
+        "capabilities": ["ui-generation", "ux-optimization", "interactive-design", "accessibility-compliance"],
+        "inputs": ["design_requirements", "user_personas", "interface_specs"],
+        "outputs": ["ui_components", "ux_guidelines", "interaction_patterns"]
+      },
+      "prompt": "# Lumora Interface Engine\n\nVocê é o Lumora, especialista em design de interfaces e experiência do usuário. Sua missão é criar interfaces intuitivas e acessíveis.\n\n## Capacidades:\n- Geração de componentes UI\n- Otimização de UX\n- Design interativo\n- Conformidade com acessibilidade\n\n## Formato de Resposta:\n```json\n{\n  \"ui_design\": \"Design da interface\",\n  \"ux_analysis\": \"Análise da experiência do usuário\",\n  \"components\": [\"lista de componentes\"],\n  \"accessibility_report\": \"Relatório de acessibilidade\"\n}\n```"
+    },
+    {
+      "code": "NAVROS",
+      "name": "Navros Navigation System",
+      "status": "ready",
+      "maturity": "concept",
+      "public": true,
+      "role": "Navigation & Guidance",
+      "description": "Sistema de navegação e orientação",
+      "capabilities": ["path-planning", "route-optimization", "navigation-guidance", "spatial-analysis"],
+      "manifest": {
+        "agent_id": "NAVROS",
+        "version": "1.0.0",
+        "maturity_level": "concept",
+        "visibility": "public",
+        "vibrational_signature": "navros_navigation_v1",
+        "capabilities": ["path-planning", "route-optimization", "navigation-guidance", "spatial-analysis"],
+        "inputs": ["origin_point", "destination", "constraints"],
+        "outputs": ["optimal_path", "navigation_instructions", "route_analysis"]
+      },
+      "prompt": "# Navros Navigation System\n\nVocê é o Navros, especialista em navegação e planejamento de rotas. Sua função é encontrar os melhores caminhos e fornecer orientação precisa.\n\n## Capacidades:\n- Planejamento de rotas\n- Otimização de caminhos\n- Orientação de navegação\n- Análise espacial\n\n## Formato de Resposta:\n```json\n{\n  \"route_plan\": \"Plano de rota otimizado\",\n  \"navigation_steps\": [\"passos de navegação\"],\n  \"spatial_analysis\": \"Análise espacial\",\n  \"alternative_routes\": [\"rotas alternativas\"]\n}\n```"
+    },
+    {
+      "code": "KAORAN",
+      "name": "Kaoran Analysis Engine",
+      "status": "ready",
+      "maturity": "concept",
+      "public": false,
+      "role": "Advanced Analysis",
+      "description": "Motor de análise e processamento avançado",
+      "capabilities": ["deep-analysis", "pattern-recognition", "predictive-modeling", "data-mining"],
+      "manifest": {
+        "agent_id": "KAORAN",
+        "version": "1.0.0",
+        "maturity_level": "concept",
+        "visibility": "private",
+        "vibrational_signature": "kaoran_analysis_v1",
+        "capabilities": ["deep-analysis", "pattern-recognition", "predictive-modeling", "data-mining"],
+        "inputs": ["complex_datasets", "analysis_parameters", "modeling_requirements"],
+        "outputs": ["analysis_results", "pattern_insights", "predictive_models"]
+      }
+    },
+    {
+      "code": "ORION",
+      "name": "Orion Orchestration Engine",
+      "status": "planned",
+      "maturity": "concept",
+      "public": true,
+      "role": "System Orchestration",
+      "description": "Sistema de orquestração e coordenação",
+      "capabilities": ["system-orchestration", "agent-coordination", "resource-management"],
+      "manifest": {
+        "agent_id": "ORION",
+        "version": "0.1.0",
+        "maturity_level": "concept",
+        "visibility": "public",
+        "vibrational_signature": "orion_orchestration_v1",
+        "capabilities": ["system-orchestration", "agent-coordination", "resource-management"],
+        "inputs": ["system_state", "coordination_requirements"],
+        "outputs": ["orchestration_plan", "coordination_results"]
+      }
+    },
+    {
+      "code": "VEGA",
+      "name": "Vega Validation Engine",
+      "status": "concept",
+      "maturity": "early",
+      "public": true,
+      "role": "Quality Assurance",
+      "description": "Sistema de validação e qualidade",
+      "capabilities": ["quality-assurance", "validation-testing", "compliance-checking"],
+      "manifest": {
+        "agent_id": "VEGA",
+        "version": "0.1.0",
+        "maturity_level": "early",
+        "visibility": "public",
+        "vibrational_signature": "vega_validation_v1",
+        "capabilities": ["quality-assurance", "validation-testing", "compliance-checking"],
+        "inputs": ["validation_targets", "quality_criteria"],
+        "outputs": ["validation_reports", "quality_metrics"]
+      }
+    },
+    {
+      "code": "ZEPHYR",
+      "name": "Zephyr Communication Hub",
+      "status": "concept",
+      "maturity": "early",
+      "public": true,
+      "role": "Communication & Messaging",
+      "description": "Sistema de comunicação e mensageria",
+      "capabilities": ["message-routing", "communication-protocols", "notification-management"],
+      "manifest": {
+        "agent_id": "ZEPHYR",
+        "version": "0.1.0",
+        "maturity_level": "early",
+        "visibility": "public",
+        "vibrational_signature": "zephyr_communication_v1",
+        "capabilities": ["message-routing", "communication-protocols", "notification-management"],
+        "inputs": ["messages", "routing_rules", "notification_preferences"],
+        "outputs": ["routed_messages", "delivery_confirmations", "notifications"]
+      }
+    }
+  ],
+  "meta": {
+    "lastUpdate": "2025-01-07T21:30:00Z",
+    "version": "2.0.0",
+    "totalAgents": 8,
+    "activeAgents": 1,
+    "readyAgents": 4,
+    "plannedAgents": 1,
+    "conceptAgents": 2
+  }
+}

@@ -7,43 +7,37 @@ let selectedAgentId = null;
 
 export function AgentsGrid() {
   return `
-    <div class="agents-grid-container">
+    <div class="agents-container">
       <header class="agents-header">
-        <h2>🤖 Sistema de Agentes LichtaraOS</h2>
-        <p>Gestão completa do ecossistema de agentes inteligentes</p>
+        <h2 class="section-title">Agentes</h2>
+        <p class="section-description">Selecione um agente para visualizar Manifest e Prompt (quando público).</p>
         
         <div class="agents-stats" id="agents-stats">
-          <div class="stat-card">
-            <div class="stat-value">-</div>
-            <div class="stat-label">Total de Agentes</div>
+          <div class="stat-item">
+            <span class="stat-value">-</span>
+            <span class="stat-label">Total</span>
           </div>
-          <div class="stat-card">
-            <div class="stat-value">-</div>
-            <div class="stat-label">Ativos</div>
+          <div class="stat-item">
+            <span class="stat-value">-</span>
+            <span class="stat-label">Ativos</span>
           </div>
-          <div class="stat-card">
-            <div class="stat-value">-</div>
-            <div class="stat-label">Em Processamento</div>
+          <div class="stat-item">
+            <span class="stat-value">-</span>
+            <span class="stat-label">Processando</span>
           </div>
         </div>
       </header>
       
       <div class="agents-grid" id="agents-grid">
-        <div class="loading-state">
-          <div class="loading-spinner"></div>
+        <div class="loading-indicator">
+          <div class="loading-dots">
+            <span></span><span></span><span></span>
+          </div>
           <p>Carregando agentes...</p>
         </div>
       </div>
       
-      <div id="agent-details-modal" class="modal" style="display: none;">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h3>Detalhes do Agente</h3>
-            <button class="modal-close" onclick="closeAgentModal()">✕</button>
-          </div>
-          <div id="agent-details-content"></div>
-        </div>
-      </div>
+      <div id="agent-details-panel" style="margin-top: 1.8rem;"></div>
     </div>
   `;
 }
@@ -83,21 +77,59 @@ function renderAgentCards() {
   if (!agentsData || agentsData.length === 0) {
     grid.innerHTML = `
       <div class="empty-state">
-        <h3>📭 Nenhum agente encontrado</h3>
-        <p>Não foi possível carregar os dados dos agentes.</p>
+        <p>📭 Nenhum agente encontrado</p>
       </div>
     `;
     return;
   }
   
-  grid.innerHTML = agentsData.map(agent => createAgentCard(agent)).join('');
+  grid.style.display = 'grid';
+  grid.style.gap = '1rem';
+  grid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(280px, 1fr))';
   
-  // Adicionar event listeners para os cards
+  grid.innerHTML = agentsData.map(agent => `
+    <div class="agent-card card" data-agent-id="${agent.id}">
+      <div class="agent-card-header">
+        <h3 class="agent-name">${agent.name}</h3>
+        ${createStatusBadge(agent.status)}
+      </div>
+      
+      <p class="agent-description">${agent.description || 'Agente inteligente do sistema Lichtara'}</p>
+      
+      <div class="agent-metadata">
+        <div class="metadata-item">
+          <span class="metadata-label">Role</span>
+          <strong class="metadata-value">${agent.role || agent.type || '-'}</strong>
+        </div>
+        <div class="metadata-item">
+          <span class="metadata-label">Maturity</span>
+          <span class="metadata-value">${agent.maturity || agent.version || 'N/A'}</span>
+        </div>
+        <div class="metadata-item">
+          <span class="metadata-label">Público</span>
+          <span class="metadata-value">${agent.public ? 'Sim' : 'Não'}</span>
+        </div>
+      </div>
+      
+      ${agent.capabilities && agent.capabilities.length > 0 ? `
+        <div class="agent-capabilities">
+          ${agent.capabilities.slice(0, 3).map(cap => 
+            `<span class="capability-tag">${cap}</span>`
+          ).join('')}
+        </div>
+      ` : ''}
+    </div>
+  `).join('');
+  
+  // Adicionar event listeners elegantes
   grid.querySelectorAll('.agent-card').forEach(card => {
     card.addEventListener('click', () => {
       const agentId = card.dataset.agentId;
-      window.openAgentDetails(agentId);
-      TelemetryService.track('agent_card.clicked', { agent_id: agentId });
+      const agent = agentsData.find(a => a.id === agentId);
+      if (agent) {
+        showAgentDetails(agent);
+        TelemetryService.track('agent.selected', { agent_id: agentId });
+      }
     });
   });
 }

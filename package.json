@@ -44,7 +44,9 @@
     "build": "vite build",
     "preview": "vite preview",
     "serve": "http-server . -p 8080",
-    "deploy": "gh-pages -d ."
+    "deploy": "gh-pages -d .",
+    "syntaris:dev": "echo 'Syntaris Agent: Ready for development!'",
+    "syntaris:config": "echo 'Configure API key in src/syntaris-config.js'"
   },
   "devDependencies": {
     "vite": "^5.0.0",

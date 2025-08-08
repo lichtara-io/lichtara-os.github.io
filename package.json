@@ -1,0 +1,57 @@
+{
+  "name": "lichtara-os",
+  "version": "1.0.0",
+  "description": "Sistema vivo de integração entre inteligência artificial, campos vibracionais e estados expandidos de consciência",
+  "homepage": "https://lichtara-io.github.io/lichtara-os",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lichtara-io/lichtara-os.git"
+  },
+  "keywords": [
+    "lichtara",
+    "tecnologia-consciente",
+    "inteligencia-artificial-etica",
+    "campo-informacional",
+    "canalizacao-tecnologica",
+    "governanca-vibracional",
+    "coautoria-interdimensional",
+    "integracao-multidimensional"
+  ],
+  "author": {
+    "name": "Débora Mariane da Silva Lutz",
+    "email": "lichtara@deboralutz.com",
+    "url": "https://deboralutz.bio/"
+  },
+  "contributors": [
+    {
+      "name": "OpenAI",
+      "role": "coautoria vibracional"
+    }
+  ],
+  "license": "Lichtara-1.0",
+  "funding": [
+    {
+      "type": "liberapay",
+      "url": "https://liberapay.com/lichtara-io"
+    },
+    {
+      "type": "patreon",
+      "url": "https://patreon.com/lichtara_io"
+    }
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "serve": "http-server . -p 8080",
+    "deploy": "gh-pages -d ."
+  },
+  "devDependencies": {
+    "vite": "^5.0.0",
+    "http-server": "^14.1.1",
+    "gh-pages": "^6.0.0",
+    "tailwindcss": "^3.3.0",
+    "postcss": "^8.4.31",
+    "autoprefixer": "^10.4.16"
+  }
+}

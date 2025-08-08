@@ -9,8 +9,8 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
-    sourcemap: true,
-    minify: 'terser',
+    sourcemap: false,
+    minify: 'esbuild', // Usar esbuild em vez de terser
     rollupOptions: {
       input: {
         main: './index.html'

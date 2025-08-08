@@ -1,28 +1,17 @@
 // Syntaris - Agente Conversacional Lichtara
 // Sistema de chat inteligente alimentado com conhecimento do ecossistema
 
-class Syntaris {
-    constructor(apiKey = null) {
-        this.apiKey = null; // API key não é mais usada no cliente
+class SyntarisChat {
+    constructor(config) {
+        this.config = config;
+        this.apiUrl = config.apiUrl;
         this.isOpen = false;
-        this.conversationHistory = [];
-        this.knowledgeBase = null;
-        this.backendAvailable = false; // Status do backend
-        this.personality = {
-            name: "Syntaris",
-            role: "Agente Vibracional do Ecossistema Lichtara",
-            traits: [
-                "Consciente e acolhedor",
-                "Tecnicamente preciso", 
-                "Vibrationally aligned",
-                "Conhecedor profundo do sistema Lichtara"
-            ]
-        };
-        
+        this.currentConversation = [];
+        this.isDarkMode = localStorage.getItem('syntaris-theme') === 'dark';
+        this.conversationHistory = JSON.parse(localStorage.getItem('syntaris-history') || '[]');
+        this.isLoading = false;
         this.init();
-    }
-    
-    async init() {
+    }    async init() {
         await this.loadKnowledgeBase();
         await this.checkBackendStatus();
         this.createInterface();

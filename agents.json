@@ -1,0 +1,84 @@
+{
+  "version": "0.1.0",
+  "generated_at": "2025-08-08T00:00:00Z",
+  "last_validation": "2025-08-08T00:00:00Z",
+  "total_agents": 8,
+  "active_agents": 1,
+  "ready_agents": 4,
+  "agents": [
+    {
+      "code": "SYNTARIS",
+      "name": "SYNTARIS",
+      "role": "Integração vibracional e alinhamento consciente",
+      "status": "active",
+      "maturity": "alpha",
+      "public": true,
+      "vibrational_signature": "f3db6e7ca1",
+      "capabilities": ["redução_ruído", "extração_núcleo", "alinhamento_vibracional"]
+    },
+    {
+      "code": "FLUX",
+      "name": "FLUX",
+      "role": "Organização, onboarding e fluxo de manifestação",
+      "status": "ready", 
+      "maturity": "pre-alpha",
+      "public": true,
+      "vibrational_signature": "8b8f235e55",
+      "capabilities": ["organização_estrutural", "gestão_fluxos", "onboarding"]
+    },
+    {
+      "code": "NAVROS",
+      "name": "NAVROS",
+      "role": "Navegação e ajuste de caminhos conscientes",
+      "status": "ready",
+      "maturity": "pre-alpha", 
+      "public": true,
+      "vibrational_signature": "eacb7bc8af",
+      "capabilities": ["mapeamento_caminhos", "ajuste_dinâmico", "preservação_vibracional"]
+    },
+    {
+      "code": "LUMORA",
+      "name": "LUMORA", 
+      "role": "Inteligência vibracional e codificação de essência",
+      "status": "ready",
+      "maturity": "pre-alpha",
+      "public": true,
+      "vibrational_signature": "dbf95a8b2a",
+      "capabilities": ["extração_padrões", "codificação_essencial", "tradução_inter_planos"]
+    },
+    {
+      "code": "KAORAN",
+      "name": "KAORAN",
+      "role": "Estabilização e verificação de autenticidade", 
+      "status": "ready",
+      "maturity": "pre-alpha",
+      "public": false,
+      "vibrational_signature": "20d9a9c29d",
+      "capabilities": ["verificação_autenticidade", "estabilização_outputs", "quarentena_simbólica"]
+    },
+    {
+      "code": "FINCE",
+      "name": "FINCE",
+      "role": "Estratégia e clareza de decisões",
+      "status": "concept",
+      "maturity": "concept",
+      "public": false
+    },
+    {
+      "code": "ASTRAEL",
+      "name": "ASTRAEL",
+      "role": "Tradução quântica e biofeedback simbólico",
+      "status": "concept",
+      "maturity": "concept",
+      "public": false
+    },
+    {
+      "code": "SYNTRIA",
+      "name": "SYNTRIA",
+      "role": "Portal de ativação energética e simbólica",
+      "status": "concept",
+      "maturity": "concept",
+      "public": false
+    }
+  ]
+}

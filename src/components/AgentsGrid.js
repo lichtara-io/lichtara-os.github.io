@@ -2,12 +2,12 @@ import { renderAgentDetails } from './AgentDetails.js';
 
 export function renderAgentsGrid(state) {
   const container = document.createElement('div');
-  container.className = 'p-6 space-y-6';
+  container.className = 'p-6 space-y-6 bg-white';
 
   const header = document.createElement('div');
   header.innerHTML = `
-    <h2 class="text-lg font-semibold mb-2">Agentes</h2>
-    <p class="text-sm text-slate-400">Selecione um agente para visualizar Manifest e Prompt (se público).</p>
+    <h2 class="text-lg font-semibold mb-2 text-gray-900">Agentes</h2>
+    <p class="text-sm text-gray-600">Selecione um agente para visualizar Manifest e Prompt (se público).</p>
   `;
   container.appendChild(header);
 
@@ -18,19 +18,19 @@ export function renderAgentsGrid(state) {
     const card = document.createElement('button');
     card.type = 'button';
     card.className = `
-      text-left rounded border border-slate-800 bg-slate-900/60 p-4 hover:border-emerald-500
-      transition focus:outline-none focus:ring-2 focus:ring-emerald-500
+      text-left rounded-lg border border-gray-200 bg-white p-4 hover:border-blue-300 hover:shadow-md
+      transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
     `;
     card.innerHTML = `
-      <div class="flex items-center justify-between mb-2">
-        <h3 class="font-medium">${agent.name || agent.code}</h3>
+      <div class="flex items-center justify-between mb-3">
+        <h3 class="font-medium text-gray-900">${agent.name || agent.code}</h3>
         ${badge(agent.status)}
       </div>
-      <div class="text-xs space-y-1">
-        <div><span class="text-slate-400">Role:</span> ${agent.role || '-'}</div>
-        <div><span class="text-slate-400">Maturity:</span> ${agent.maturity}</div>
-        <div><span class="text-slate-400">Public:</span> ${agent.public ? 'Sim' : 'Não'}</div>
-        ${agent.capabilities ? `<div><span class="text-slate-400">Capabilities:</span> ${agent.capabilities.slice(0,2).join(', ')}</div>` : ''}
+      <div class="text-xs space-y-2">
+        <div><span class="text-gray-500 font-medium">Role:</span> <span class="text-gray-700">${agent.role || '-'}</span></div>
+        <div><span class="text-gray-500 font-medium">Maturity:</span> <span class="text-gray-700">${agent.maturity}</span></div>
+        <div><span class="text-gray-500 font-medium">Public:</span> <span class="text-gray-700">${agent.public ? 'Sim' : 'Não'}</span></div>
+        ${agent.capabilities ? `<div><span class="text-gray-500 font-medium">Capabilities:</span> <span class="text-gray-700">${agent.capabilities.slice(0,2).join(', ')}</span></div>` : ''}
       </div>
     `;
     card.addEventListener('click', () => openDetails(agent));
@@ -54,11 +54,11 @@ export function renderAgentsGrid(state) {
 function badge(status) {
   const statusNormalized = status?.toLowerCase() || 'unknown';
   const map = {
-    'active': 'bg-emerald-600/20 text-emerald-300 border border-emerald-600/30',
-    'ready': 'bg-sky-600/20 text-sky-300 border border-sky-600/30',
-    'planned': 'bg-amber-600/20 text-amber-300 border border-amber-600/30',
-    'concept': 'bg-slate-600/20 text-slate-300 border border-slate-600/30'
+    'active': 'bg-green-100 text-green-700 border border-green-200',
+    'ready': 'bg-blue-100 text-blue-700 border border-blue-200',
+    'planned': 'bg-amber-100 text-amber-700 border border-amber-200',
+    'concept': 'bg-gray-100 text-gray-700 border border-gray-200'
   };
-  const cls = map[statusNormalized] || 'bg-slate-700/30 text-slate-300 border border-slate-700/50';
-  return `<span class="text-[10px] px-2 py-1 rounded ${cls} uppercase tracking-wide">${status || 'Unknown'}</span>`;
+  const cls = map[statusNormalized] || 'bg-gray-100 text-gray-600 border border-gray-200';
+  return `<span class="text-[10px] px-2 py-1 rounded-full ${cls} uppercase tracking-wide font-medium">${status || 'Unknown'}</span>`;
 }

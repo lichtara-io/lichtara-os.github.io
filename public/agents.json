@@ -34,21 +34,23 @@
     },
     {
       "code": "LUMORA",
-      "name": "LUMORA",
+      "name": "LUMORA", 
       "role": "Inteligência vibracional e codificação de essência",
-      "status": "planned",
+      "status": "ready",
       "maturity": "pre-alpha",
       "public": true,
-      "vibrational_signature": "dbf95a8b2a"
+      "vibrational_signature": "dbf95a8b2a",
+      "capabilities": ["extração_padrões", "codificação_essencial", "tradução_inter_planos"]
     },
     {
       "code": "KAORAN",
       "name": "KAORAN",
-      "role": "Estabilização e verificação de autenticidade",
-      "status": "planned",
+      "role": "Estabilização e verificação de autenticidade", 
+      "status": "ready",
       "maturity": "pre-alpha",
       "public": false,
-      "vibrational_signature": "20d9a9c29d"
+      "vibrational_signature": "20d9a9c29d",
+      "capabilities": ["verificação_autenticidade", "estabilização_outputs", "quarentena_simbólica"]
     },
     {
       "code": "FINCE",

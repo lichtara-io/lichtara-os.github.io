@@ -1,6 +1,7 @@
 {
   "name": "lichtara-os",
   "version": "1.0.0",
+  "type": "module",
   "description": "Sistema vivo de integração entre inteligência artificial, campos vibracionais e estados expandidos de consciência",
   "homepage": "https://lichtara-io.github.io/lichtara-os",
   "repository": {

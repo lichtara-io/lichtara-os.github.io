@@ -125,10 +125,192 @@ class SyntarisChat {
             container.classList.remove('closed');
             container.classList.add('open');
             document.getElementById('syntaris-input')?.focus();
+            this.showSuggestedQuestions();
         } else {
             container.classList.remove('open');
             container.classList.add('closed');
         }
+    }
+
+    toggleChat() {
+        this.toggle();
+    }
+
+    closeChat() {
+        const container = document.getElementById('syntaris-chat');
+        container.classList.add('hidden');
+        this.isOpen = false;
+    }
+
+    toggleTheme() {
+        this.isDarkMode = !this.isDarkMode;
+        localStorage.setItem('syntaris-theme', this.isDarkMode ? 'dark' : 'light');
+        this.applyTheme();
+    }
+
+    applyTheme() {
+        const chatContainer = document.getElementById('syntaris-chat');
+        const themeButton = document.querySelector('.syntaris-theme-toggle');
+        
+        if (this.isDarkMode) {
+            chatContainer.classList.add('dark-theme');
+            themeButton.textContent = '☀️';
+        } else {
+            chatContainer.classList.remove('dark-theme');
+            themeButton.textContent = '🌙';
+        }
+    }
+
+    toggleHistory() {
+        const historyPanel = document.getElementById('syntaris-history-panel');
+        historyPanel.classList.toggle('hidden');
+        if (!historyPanel.classList.contains('hidden')) {
+            this.displayConversationHistory();
+        }
+    }
+
+    clearConversation() {
+        if (confirm('Deseja limpar a conversa atual?')) {
+            this.currentConversation = [];
+            const messagesContainer = document.getElementById('syntaris-messages');
+            messagesContainer.innerHTML = '';
+            this.showSuggestedQuestions();
+        }
+    }
+
+    loadConversationHistory() {
+        this.conversationHistory = JSON.parse(localStorage.getItem('syntaris-history') || '[]');
+    }
+
+    saveConversationHistory() {
+        if (this.currentConversation.length > 0) {
+            const conversation = {
+                id: Date.now(),
+                timestamp: new Date().toISOString(),
+                messages: [...this.currentConversation],
+                title: this.currentConversation[0]?.content.substring(0, 30) + '...' || 'Nova conversa'
+            };
+            
+            this.conversationHistory.unshift(conversation);
+            // Manter apenas as últimas 50 conversas
+            this.conversationHistory = this.conversationHistory.slice(0, 50);
+            localStorage.setItem('syntaris-history', JSON.stringify(this.conversationHistory));
+        }
+    }
+
+    displayConversationHistory() {
+        const historyList = document.getElementById('syntaris-history-list');
+        historyList.innerHTML = '';
+
+        if (this.conversationHistory.length === 0) {
+            historyList.innerHTML = '<p class="no-history">Nenhuma conversa salva ainda.</p>';
+            return;
+        }
+
+        this.conversationHistory.forEach(conversation => {
+            const historyItem = document.createElement('div');
+            historyItem.className = 'history-item';
+            historyItem.innerHTML = `
+                <div class="history-title">${conversation.title}</div>
+                <div class="history-date">${new Date(conversation.timestamp).toLocaleDateString()}</div>
+                <div class="history-actions">
+                    <button onclick="syntarisChat.loadConversation(${conversation.id})">Carregar</button>
+                    <button onclick="syntarisChat.deleteConversation(${conversation.id})">Excluir</button>
+                </div>
+            `;
+            historyList.appendChild(historyItem);
+        });
+    }
+
+    loadConversation(conversationId) {
+        const conversation = this.conversationHistory.find(c => c.id === conversationId);
+        if (conversation) {
+            this.currentConversation = [...conversation.messages];
+            const messagesContainer = document.getElementById('syntaris-messages');
+            messagesContainer.innerHTML = '';
+            
+            conversation.messages.forEach(message => {
+                this.displayMessage(message.content, message.sender);
+            });
+            
+            this.toggleHistory();
+        }
+    }
+
+    deleteConversation(conversationId) {
+        if (confirm('Deseja excluir esta conversa?')) {
+            this.conversationHistory = this.conversationHistory.filter(c => c.id !== conversationId);
+            localStorage.setItem('syntaris-history', JSON.stringify(this.conversationHistory));
+            this.displayConversationHistory();
+        }
+    }
+
+    addSuggestedQuestions() {
+        const suggestions = [
+            "O que é o Lichtara OS?",
+            "Como funciona a metodologia vibracional?",
+            "Quais são os agentes disponíveis?",
+            "Como contribuir com o projeto?",
+            "O que é a tecnologia consciente?"
+        ];
+
+        const suggestionsContainer = document.getElementById('syntaris-suggestions');
+        suggestionsContainer.innerHTML = suggestions.map(question => 
+            `<button class="suggested-question" onclick="syntarisChat.askSuggestedQuestion('${question}')">${question}</button>`
+        ).join('');
+    }
+
+    askSuggestedQuestion(question) {
+        document.getElementById('syntaris-input').value = question;
+        this.sendMessage();
+    }
+
+    showSuggestedQuestions() {
+        if (this.currentConversation.length === 0) {
+            document.getElementById('syntaris-suggestions').style.display = 'block';
+        } else {
+            document.getElementById('syntaris-suggestions').style.display = 'none';
+        }
+    }
+
+    setupSmoothScroll() {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    }
+
+    exportConversation() {
+        if (this.currentConversation.length === 0) {
+            alert('Nenhuma conversa para exportar.');
+            return;
+        }
+
+        const conversationText = this.currentConversation.map(message => 
+            `${message.sender === 'user' ? 'Você' : 'Syntaris'}: ${message.content}`
+        ).join('\n\n');
+
+        const timestamp = new Date().toLocaleString();
+        const exportContent = `# Conversa com Syntaris - ${timestamp}\n\n${conversationText}`;
+
+        // Criar e fazer download do arquivo
+        const blob = new Blob([exportContent], { type: 'text/markdown' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `syntaris-conversa-${Date.now()}.md`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
     }
     
     handleKeyPress(event) {
@@ -141,14 +323,18 @@ class SyntarisChat {
         const input = document.getElementById('syntaris-input');
         const message = input.value.trim();
         
-        if (!message) return;
+        if (!message || this.isLoading) return;
+        
+        this.isLoading = true;
+        this.hideSuggestedQuestions();
         
         // Adiciona mensagem do usuário
         this.addMessage(message, 'user');
+        this.currentConversation.push({ content: message, sender: 'user', timestamp: new Date().toISOString() });
         input.value = '';
         
-        // Mostra indicador de digitação
-        this.showTyping();
+        // Mostra indicador de loading
+        this.showLoading();
         
         try {
             // Determina se vai usar API ou modo offline
@@ -157,11 +343,15 @@ class SyntarisChat {
             
             // Gera resposta do Syntaris
             const response = await this.generateResponse(message);
-            this.hideTyping();
+            this.hideLoading();
             this.addMessage(response, 'syntaris');
+            this.currentConversation.push({ content: response, sender: 'syntaris', timestamp: new Date().toISOString() });
+            
+            // Salva no histórico
+            this.saveConversationHistory();
             
         } catch (error) {
-            this.hideTyping();
+            this.hideLoading();
             console.error('Syntaris Error:', error);
             
             let errorMessage = 'Desculpe, houve um problema na conexão vibracional. ';
@@ -172,6 +362,8 @@ class SyntarisChat {
                 try {
                     const fallbackResponse = this.generateOfflineResponse(message);
                     this.addMessage(fallbackResponse, 'syntaris');
+                    this.currentConversation.push({ content: fallbackResponse, sender: 'syntaris', timestamp: new Date().toISOString() });
+                    this.saveConversationHistory();
                     return;
                 } catch (fallbackError) {
                     errorMessage += ' Tente novamente em alguns instantes.';
@@ -181,7 +373,41 @@ class SyntarisChat {
             }
             
             this.addMessage(errorMessage, 'syntaris');
+        } finally {
+            this.isLoading = false;
         }
+    }
+
+    showLoading() {
+        const messagesContainer = document.getElementById('syntaris-messages');
+        const loadingDiv = document.createElement('div');
+        loadingDiv.className = 'message syntaris-message loading-message';
+        loadingDiv.id = 'syntaris-loading';
+        loadingDiv.innerHTML = `
+            <div class="loading-animation">
+                <div class="loading-dots">
+                    <span></span><span></span><span></span>
+                </div>
+                <span class="loading-text">Syntaris está pensando...</span>
+            </div>
+        `;
+        messagesContainer.appendChild(loadingDiv);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    hideLoading() {
+        const loadingMessage = document.getElementById('syntaris-loading');
+        if (loadingMessage) {
+            loadingMessage.remove();
+        }
+    }
+
+    hideSuggestedQuestions() {
+        document.getElementById('syntaris-suggestions').style.display = 'none';
+    }
+
+    displayMessage(content, sender) {
+        this.addMessage(content, sender);
     }
     
     addMessage(content, sender) {

@@ -96,7 +96,7 @@ function renderAgentCards() {
   grid.querySelectorAll('.agent-card').forEach(card => {
     card.addEventListener('click', () => {
       const agentId = card.dataset.agentId;
-      window.openAgentDetails(agentId);
+      openAgentDetails(agentId);
       TelemetryService.track('agent_card.clicked', { agent_id: agentId });
     });
   });
@@ -143,7 +143,7 @@ function createAgentCard(agent) {
       </div>
       
       <div class="agent-actions">
-        <button class="action-btn primary" onclick="window.openAgentDetails('${agent.id}'); event.stopPropagation();">
+        <button class="action-btn primary" onclick="openAgentDetails('${agent.id}'); event.stopPropagation();">
           Ver Detalhes
         </button>
       </div>
@@ -199,6 +199,45 @@ function updateAgentsStats() {
   statCards[0].textContent = totalAgents;
   statCards[1].textContent = activeAgents;
   statCards[2].textContent = processingAgents;
+}
+
+function openAgentDetails(agentId) {
+  const agent = agentsData.find(a => a.id === agentId);
+  if (!agent) return;
+  
+  selectedAgentId = agentId;
+  
+  const modal = document.getElementById('agent-details-modal');
+  const content = document.getElementById('agent-details-content');
+  
+  content.innerHTML = `
+    <div class="agent-details-full">
+      <div class="agent-header-full">
+        <div class="agent-icon-large">${agent.icon || '🤖'}</div>
+        <div class="agent-info-full">
+          <h2>${agent.name}</h2>
+          <div class="status-badge ${getStatusClass(agent.status)}">
+            ${getStatusIcon(agent.status)} ${agent.status}
+          </div>
+          <p>${agent.description}</p>
+        </div>
+      </div>
+      
+      <div class="agent-tabs">
+        <button class="tab-btn active" onclick="showAgentTab('overview')">Visão Geral</button>
+        <button class="tab-btn" onclick="showAgentTab('config')">Configuração</button>
+        <button class="tab-btn" onclick="showAgentTab('logs')">Logs</button>
+      </div>
+      
+      <div class="agent-tab-content" id="agent-tab-content">
+        ${renderAgentOverview(agent)}
+      </div>
+    </div>
+  `;
+  
+  modal.style.display = 'flex';
+  
+  TelemetryService.track('agent_details.opened', { agent_id: agentId });
 }
 
 function renderAgentOverview(agent) {
@@ -259,45 +298,6 @@ function renderAgentOverview(agent) {
 }
 
 // Funções globais para o modal
-window.openAgentDetails = function(agentId) {
-  const agent = agentsData.find(a => a.id === agentId);
-  if (!agent) return;
-  
-  selectedAgentId = agentId;
-  
-  const modal = document.getElementById('agent-details-modal');
-  const content = document.getElementById('agent-details-content');
-  
-  content.innerHTML = `
-    <div class="agent-details-full">
-      <div class="agent-header-full">
-        <div class="agent-icon-large">${agent.icon || '🤖'}</div>
-        <div class="agent-info-full">
-          <h2>${agent.name}</h2>
-          <div class="status-badge ${getStatusClass(agent.status)}">
-            ${getStatusIcon(agent.status)} ${agent.status}
-          </div>
-          <p>${agent.description}</p>
-        </div>
-      </div>
-      
-      <div class="agent-tabs">
-        <button class="tab-btn active" onclick="showAgentTab('overview')">Visão Geral</button>
-        <button class="tab-btn" onclick="showAgentTab('config')">Configuração</button>
-        <button class="tab-btn" onclick="showAgentTab('logs')">Logs</button>
-      </div>
-      
-      <div class="agent-tab-content" id="agent-tab-content">
-        ${renderAgentOverview(agent)}
-      </div>
-    </div>
-  `;
-  
-  modal.style.display = 'flex';
-  
-  TelemetryService.track('agent_details.opened', { agent_id: agentId });
-};
-
 window.closeAgentModal = function() {
   document.getElementById('agent-details-modal').style.display = 'none';
   selectedAgentId = null;

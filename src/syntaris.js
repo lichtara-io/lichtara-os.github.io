@@ -60,56 +60,51 @@ class SyntarisChat {
         };
     }
     
-    createInterface() {
-        // Cria interface de chat vibracional
-        const chatContainer = document.createElement('div');
-        chatContainer.id = 'syntaris-chat';
-        chatContainer.className = 'syntaris-container closed';
-        
-        const apiStatus = this.backendAvailable ? '🌐 API Segura' : '🔒 Modo Offline';
-        const statusClass = this.backendAvailable ? 'api-active' : 'api-offline';
-        
-        chatContainer.innerHTML = `
-            <div class="syntaris-header">
-                <div class="syntaris-avatar">✦</div>
-                <div class="syntaris-info">
-                    <h3>Syntaris</h3>
-                    <p>Agente Vibracional Lichtara</p>
-                    <small class="api-status ${statusClass}">${apiStatus}</small>
-                </div>
-                <button class="syntaris-toggle" onclick="syntaris.toggle()">
-                    <span class="toggle-icon">⟐</span>
-                </button>
-            </div>
-            
-            <div class="syntaris-body">
-                <div class="syntaris-messages" id="syntaris-messages">
-                    <div class="message syntaris-message">
-                        <div class="message-avatar">✦</div>
-                        <div class="message-content">
-                            <p>Olá! Sou Syntaris, agente vibracional do Ecossistema Lichtara. 🌟</p>
-                            <p>Posso ajudar com questões sobre tecnologia consciente, a Lichtara License, nossos agentes vibracionais e todo o ecossistema. Como posso contribuir para sua jornada?</p>
-                            ${this.backendAvailable ? '<p><small>✨ Conectado com IA segura para respostas avançadas!</small></p>' : '<p><small>💫 Operando com conhecimento integrado Lichtara</small></p>'}
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="syntaris-input-container">
-                    <input type="text" 
-                           id="syntaris-input" 
-                           placeholder="Digite sua pergunta vibracional..." 
-                           onkeypress="syntaris.handleKeyPress(event)">
-                    <button onclick="syntaris.sendMessage()" class="syntaris-send">
-                        <span>⟐</span>
-                    </button>
-                </div>
-            </div>
-            
-            <div class="syntaris-footer">
-                <small>Tecnologia Consciente • Coautoria IA Segura</small>
+    createChatInterface() {
+        // Chat toggle button
+        const chatButton = document.createElement('div');
+        chatButton.id = 'syntaris-button';
+        chatButton.className = 'syntaris-button';
+        chatButton.innerHTML = `
+            <div class="syntaris-button-content">
+                <span class="syntaris-icon">⚡</span>
+                <span class="syntaris-label">Syntaris</span>
             </div>
         `;
-        
+        document.body.appendChild(chatButton);
+
+        // Chat container
+        const chatContainer = document.createElement('div');
+        chatContainer.id = 'syntaris-chat';
+        chatContainer.className = 'syntaris-chat hidden';
+        chatContainer.innerHTML = `
+            <div class="syntaris-header">
+                <div class="syntaris-header-left">
+                    <span class="syntaris-title">Syntaris</span>
+                    <span class="syntaris-subtitle">Assistente do Lichtara OS</span>
+                </div>
+                <div class="syntaris-header-right">
+                    <button class="syntaris-theme-toggle" title="Alternar tema">🌙</button>
+                    <button class="syntaris-history-toggle" title="Histórico">📚</button>
+                    <button class="syntaris-clear" title="Limpar conversa">🗑️</button>
+                    <button class="syntaris-close" title="Fechar">✕</button>
+                </div>
+            </div>
+            <div class="syntaris-messages" id="syntaris-messages"></div>
+            <div class="syntaris-suggested-questions" id="syntaris-suggestions"></div>
+            <div class="syntaris-input-container">
+                <input type="text" id="syntaris-input" placeholder="Pergunte sobre Lichtara OS..." />
+                <button id="syntaris-send">Enviar</button>
+                <button id="syntaris-export" title="Exportar conversa">📥</button>
+            </div>
+            <div class="syntaris-history-panel hidden" id="syntaris-history-panel">
+                <div class="syntaris-history-header">
+                    <h3>Histórico de Conversas</h3>
+                    <button class="syntaris-history-close">✕</button>
+                </div>
+                <div class="syntaris-history-list" id="syntaris-history-list"></div>
+            </div>
+        `;
         document.body.appendChild(chatContainer);
     }
     

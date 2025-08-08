@@ -1,16 +1,86 @@
-name: TEMPLATE_AGENT
-role: "Template base para criação de novos agentes vibracionais"
-version: "0.1.0"
-status: template
-type: base_template
-
-# Identidade Vibracional
+name: NOME_DO_AGENTE
+code: CODIGO
+version: 0.1.0
+status: planned # planned | active | deprecated
+maturity: pre-alpha
+role: "Resumo curto da função essencial"
+description: >
+  Descrição expandida do propósito do agente, campo que sustenta e limites.
+scope:
+  accepts:
+    - intenção_alinhada
+  emits:
+    - output_bruto
+    - output_validado
+identity:
+  archetype: núcleo / suporte / verificação / síntese / codificação / portal
+  polarity: neutro
+  resonance_band: "faixa-simbólica-primária"
+inputs:
+  - name: intenção
+    type: text
+    required: true
+  - name: contexto
+    type: object
+    required: false
+outputs:
+  - name: resultado
+    type: structured
+  - name: meta
+    type: object
+capabilities:
+  - transformação
+  - ajuste_semântico
+limitations:
+  - não acessa dados externos
+  - não executa código arbitrário
+dependencies:
+  hard: []
+  soft: []
+interfaces:
+  chat: true
+  api: planned
+  cli: false
+  embedding_mode: false
+lifecycle:
+  init: "carrega parâmetros vibracionais"
+  run: "processa intenção → gera forma simbólica"
+  close: "limpa estado efêmero"
+safeguards:
+  - validação_estrutura
+  - checagem_intenção_vazia
+ethics:
+  guidelines:
+    - não inventar autoridade externa
+    - não cristalizar estados densos
+telemetry:
+  enabled: true
+  retention_hours: 24
+  fields:
+    - evento
+    - duração_ms
+    - estado_final
+fallback:
+  mode: "diagnóstico"
+  response:
+    status: degraded
+    reason: estrutura_incompleta
+alignment_protocols:
+  - nome: alinhamento_base
+    etapa:
+      - normalização
+      - redução_ruído
+      - assinatura
 vibrational_signature:
-  frequency: template
-  resonance_pattern: adaptive
-  consciousness_level: base
-
-# Configuração de Input
+  seed: "hash-a-definir"
+  pattern: "hex|tonal"
+tags:
+  - vibracional
+  - template
+last_review: 2025-08-08
+maintainer: "Guardiã | contato@exemplo"
+licensing: "híbrido"
+public: false
 input_schema:
   - campo: intenção
     tipo: texto

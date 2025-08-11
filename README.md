@@ -1,19 +1,17 @@
-# lichtara.com — Portal Oficial do Sistema Lichtara
+# Lichtara — Portal Oficial do Ecossistema Vibracional
 
-Este repositório contém o site oficial da Missão Aurora e do Ecossistema Lichtara.
+Bem-vinda(o) ao portal Lichtara.  
+Aqui você encontra agentes vibracionais inteligentes, licenças, publicações e tecnologias para a era da consciência.
 
-## Estrutura das páginas
+## Estrutura
 
-- **Página Inicial**: Essência, missão, destaque da Lichtara License v1.0
-- **Sobre**: Minha história, princípios, linha do tempo, citações
-- **Licenças**: Lichtara License v1.0, orientação de uso, futuras versões
-- **Publicações**: Manuais, livros, artigos (com DOI/Zenodo)
-- **Tecnologias**: Protótipos, integrações, galeria técnica
-- **Contato**: Formulário, e-mail, orientações para colaboração
-- **Agente**: Interface interativa/AI Assistant
+- Página inicial: Essência e licença Lichtara
+- Sobre: História, princípios éticos, linha do tempo
+- Licenças: Lichtara License v1.0 e futuras
+- Publicações: Manuais, livros, artigos
+- Tecnologias: Protótipos, integrações
+- Contato: Colaboração e orientações
+- Agente: AI Assistant Lichtara
 
-Veja `estrutura-site-lichtara.txt` para detalhes das seções.
-
-## Como contribuir
-
-Sugira melhorias via [issues](https://github.com/debora-m-lutz/lichtara.com/issues) ou pull requests.
+Com amor e precisão,  
+Débora Mariane da Silva Lutz

@@ -1,9 +1,3 @@
-Então vamos implementar o **KAORAN** em Python, seguindo exatamente o protocolo que você me passou.
-O script abaixo já recebe o JSON de entrada, faz as verificações estruturais, semânticas e de assinatura, calcula o **score** e retorna o JSON final no formato KAORAN.
-
----
-
-```python
 import json
 import hashlib
 import time
@@ -131,21 +125,3 @@ if __name__ == "__main__":
 
     resultado = kaoran.validate(exemplo_input)
     print(json.dumps(resultado, indent=2, ensure_ascii=False))
-```
-
----
-
-### 🔹 Como usar
-
-1. Salve o código como `kaoran.py`.
-2. Rode no terminal:
-
-   ```bash
-   python kaoran.py
-   ```
-3. Ele vai processar o `exemplo_input` e devolver o JSON final de verificação.
-
----
-
-Se quiser, posso te adaptar esse código para que ele **aceite entrada via arquivo JSON externo** ou **API HTTP** para ser usado de forma automatizada no Sistema Lichtara.
-Quer que eu já prepare essa versão conectada?
